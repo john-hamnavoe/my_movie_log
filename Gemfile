@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails',                  '5.1.4'
+gem 'rails',                  '~> 5.1.0'
 gem 'bcrypt',                 '3.1.11'
 gem 'will_paginate',          '3.1.5'
 gem 'carrierwave',            '1.1.0'
@@ -17,6 +17,7 @@ gem 'turbolinks',             '5.0.1'
 gem 'jbuilder',               '2.7.0'
 gem 'rails-i18n',             '5.0.4' 
 gem 'font-awesome-rails',     '4.7.0.2'
+gem 'themoviedb',             '~> 1.0.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
@@ -28,11 +29,12 @@ group :development do
   gem 'listen',                '3.1.5'
   gem 'spring',                '2.0.2'
   gem 'spring-watcher-listen', '2.0.1'
+  gem 'dotenv-rails',          '~> 2.2.0'
 end
 
 group :test do
   gem 'rails-controller-testing', '1.0.2'
-  gem 'minitest-reporters',       '1.1.14'
+  gem 'minitest-reporters',       '~> 1.1.0'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
 end

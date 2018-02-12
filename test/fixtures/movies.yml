@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+movie_one:
+  title: My Movie 1
+  tmdb_db_id: 3
+  year: 1975
+  imdb_id: ttimdb1
+  tmdb_poster_path: poster1.jpg
+
+movie_two:
+  title: My Movie 2
+  tmdb_db_id: 2
+  year: 2001
+  imdb_id: ttimdb2
+  tmdb_poster_path: poster2.jpg

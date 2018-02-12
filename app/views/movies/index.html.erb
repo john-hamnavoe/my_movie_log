@@ -1,0 +1,12 @@
+<% provide(:title, 'movies') %>
+
+<% if logged_in? %>
+  <%= link_to "add new movie", new_movie_path %>
+<% end %>
+<%= will_paginate %>
+
+<ul class="basic">
+  <%= render @movies %>
+</ul>
+
+<%= will_paginate %>

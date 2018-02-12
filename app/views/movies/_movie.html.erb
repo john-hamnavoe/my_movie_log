@@ -1,0 +1,7 @@
+<li>
+  <% if logged_in? %>
+    <%= link_to movie.title, edit_movie_path(movie.id) %>
+  <% else %>
+    <%= link_to movie.title, movie %>
+  <% end %>
+</li>

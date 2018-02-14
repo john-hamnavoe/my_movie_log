@@ -1,0 +1,20 @@
+<% provide(:title, 'the movie database details') %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+          <%= poster_for @tmdb_movie, size: 92 %>
+        </div>
+        <div class="col-md-5">
+          <h4><%= "#{@tmdb_movie["title"]} (#{year_for_movie(@tmdb_movie)})" %> </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+        <p>
+          <%= "#{@tmdb_movie["overview"]}" %>
+        </p>
+        </div>
+    </div>
+</div>
+
+<%= link_to "add this movie", new_movie_path( tmdb_id: @tmdb_movie["id"] ) %>

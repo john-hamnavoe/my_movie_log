@@ -1,13 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
 
 * System dependencies
+    You will need a API from the movie database, and add to .env.development and .env.test files as so
+    TMDB_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 * Configuration
 

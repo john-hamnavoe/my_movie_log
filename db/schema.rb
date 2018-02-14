@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211152426) do
+ActiveRecord::Schema.define(version: 20180214174411) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
-    t.integer "tmdb_db_id"
+    t.integer "tmdb_id"
     t.integer "year"
     t.string "imdb_id"
     t.string "tmdb_poster_path"

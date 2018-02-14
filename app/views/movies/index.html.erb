@@ -1,7 +1,7 @@
 <% provide(:title, 'movies') %>
 
 <% if logged_in? %>
-  <%= link_to "add new movie", new_movie_path %>
+  <%= link_to "add new movie", tmdb_movies_path %>
 <% end %>
 <%= will_paginate %>
 

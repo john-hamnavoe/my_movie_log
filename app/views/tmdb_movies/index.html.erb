@@ -1,0 +1,10 @@
+<% provide(:title, 'select movie') %>
+<ul class="basic">
+<% @tmdb_movies.each do |tmdb_movie| %>
+  <li>
+    <%= poster_for tmdb_movie %>
+    <%= link_to tmdb_movie["title"], tmdb_movie_path(tmdb_movie["id"]) %>
+    <%= link_to "select", new_movie_path( tmdb_id: tmdb_movie["id"] ) %>
+  </li>
+<% end %>
+</ul>

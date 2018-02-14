@@ -34,11 +34,28 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    
+    if params[:tmdb_id].present?
+      set_movie_defaults(params[:tmdb_id])
+    end
   end
 
   private
 
     def movie_params
       params.require(:movie).permit(:title, :year, :imdb_id, :tmdb_id, :tmdb_poster_path)
+    end
+
+    def movie_service
+      @movie_service ||= MovieDbService.new
+    end   
+
+    def set_movie_defaults(tmdb_id)
+      movie = movie_service.movie(params[:tmdb_id])
+      @movie.title = movie["title"]
+      @movie.year = year_for_movie(movie)
+      @movie.tmdb_id = tmdb_id
+      @movie.imdb_id = movie["imdb_id"]
+      @movie.tmdb_poster_path = movie["poster_path"]
     end
 end

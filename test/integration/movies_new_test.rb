@@ -4,7 +4,7 @@ require 'test_helper'
 
 class MoviesNewTest < ActionDispatch::IntegrationTest
   def setup
-    @movie = Movie.new(title: 'brand new movie', year: 2017)
+    @movie = Movie.new(title: 'brand new movie', year: 2017, tmdb_id: 1, imdb_id: "itata", tmdb_poster_path: "/example.jpg")
   end
 
   test 'should not create with out login' do
@@ -17,7 +17,11 @@ class MoviesNewTest < ActionDispatch::IntegrationTest
   test 'should create' do
     log_in_as(users(:michael))
     assert_difference 'Movie.count', +1 do
-      post movies_path, params: { movie: { title: @movie.title, year: @movie.year } }
+      post movies_path, params: { movie: { title: @movie.title, 
+                                           year: @movie.year,
+                                           tmdb_id: @movie.tmdb_id,
+                                           imdb_id: @movie.imdb_id,
+                                           tmdb_poster_path: @movie.tmdb_poster_path } }
     end
     assert_redirected_to movies_path
   end

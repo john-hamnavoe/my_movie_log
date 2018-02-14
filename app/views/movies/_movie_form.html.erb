@@ -5,6 +5,9 @@
 
   <%= f.label :year %>
   <%= f.text_field :year, class: 'form-control' %>
+  <%= f.hidden_field :tmdb_id %>
+  <%= f.hidden_field :imdb_id %>
+  <%= f.hidden_field :tmdb_poster_path %>
       
   <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>

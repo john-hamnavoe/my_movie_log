@@ -2,7 +2,8 @@ require 'test_helper'
 
 class MovieTest < ActiveSupport::TestCase
   def setup
-    @movie = Movie.new(title: "Reservoir Dogs", year: 1992, tmdb_db_id: 500)
+    @movie = Movie.new(title: "Reservoir Dogs", year: 1992, tmdb_id: 500,
+                       imdb_id: "tt0105236", tmdb_poster_path: "/tB2ITHg556e7aTV6cqQqVAXkdxN.jpg")
   end
   
   test "should be valid" do

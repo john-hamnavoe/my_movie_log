@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214174411) do
+ActiveRecord::Schema.define(version: 20180215101638) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20180214174411) do
     t.string "tmdb_poster_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["imdb_id"], name: "index_movies_on_imdb_id", unique: true
+    t.index ["tmdb_id"], name: "index_movies_on_tmdb_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

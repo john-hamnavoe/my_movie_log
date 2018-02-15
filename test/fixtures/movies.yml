@@ -13,3 +13,7 @@ movie_two:
   year: 2001
   imdb_id: ttimdb2
   tmdb_poster_path: poster2.jpg
+  
+movie_three:
+  title: My Movie 3
+  year: 2001

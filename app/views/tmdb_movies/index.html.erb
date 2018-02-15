@@ -1,4 +1,10 @@
 <% provide(:title, 'select movie') %>
+<div class="row">
+<div class="col-sm-9"></div>
+<div class="col-sm-2">
+<%= link_to "skip - add manually", new_movie_path %>
+</div>
+</div>
 <ul class="basic">
 <% @tmdb_movies.each do |tmdb_movie| %>
   <li>

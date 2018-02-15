@@ -8,6 +8,12 @@
   <%= f.hidden_field :tmdb_id %>
   <%= f.hidden_field :imdb_id %>
   <%= f.hidden_field :tmdb_poster_path %>
-      
-  <%= f.submit "Save", class: "btn btn-primary" %>
+  
+  <div class="row">    
+    <div class="col-sm-6">
+      <%= f.submit "save", class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-6">
+      <%= link_to "cancel", movies_path, method: :get, class: "btn btn-default form-control" %>
+    </div>
 <% end %>

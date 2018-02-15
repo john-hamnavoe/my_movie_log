@@ -17,7 +17,8 @@ gem 'turbolinks',             '5.0.1'
 gem 'jbuilder',               '2.7.0'
 gem 'rails-i18n',             '5.0.4' 
 gem 'font-awesome-rails',     '4.7.0.2'
-gem 'themoviedb',             '~> 1.0.0'
+# gem 'themoviedb',             '~> 1.0.0'
+gem 'themoviedb-api',         '~> 1.2'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

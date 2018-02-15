@@ -1,10 +1,12 @@
 class TmdbMoviesController < ApplicationController
-  
   def index
     if params[:keywords].present? 
-      @tmdb_movies = movie_service.find(params[:keywords])
+      @keywords = params[:keywords]
+      page = params[:page] || 1
+      search_result = movie_service.find(params[:keywords], page: page)
+      paginate(search_result[:page], search_result[:total_results], search_result[:results])
     else
-      @tmdb_movies = movie_service.popular
+      paginate(1, movie_service.page_size, movie_service.popular)
     end
   end
 
@@ -13,7 +15,14 @@ class TmdbMoviesController < ApplicationController
   end
 
   private
+    
     def movie_service
       @movie_service ||= MovieDbService.new
+    end
+
+    def paginate(page, total_results, results)
+       @tmdb_movies = WillPaginate::Collection.create(page, movie_service.page_size, total_results) do |pager|
+          pager.replace(results)
+       end
     end
 end

@@ -1,4 +1,5 @@
 <li>
+  <%= poster_for_path movie.tmdb_poster_path, movie.title %>
   <% if logged_in? %>
     <%= link_to movie.title, edit_movie_path(movie.id) %>
   <% else %>

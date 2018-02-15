@@ -3,10 +3,9 @@
 <% if logged_in? %>
   <%= link_to "add new movie", tmdb_movies_path %>
 <% end %>
-<%= will_paginate %>
 
 <ul class="basic">
   <%= render @movies %>
 </ul>
 
-<%= will_paginate %>
+<%= will_paginate @movies %>

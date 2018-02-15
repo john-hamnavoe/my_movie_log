@@ -1,6 +1,9 @@
 <% provide(:title, 'edit movie') %>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-3">
+    <%= poster_for_path @movie.tmdb_poster_path, @movie.title, size: 200 %>
+  </div>
+  <div class="col-md-6">
       <%= render 'movie_form' %>
   </div>
 </div>

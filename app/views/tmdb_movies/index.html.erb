@@ -1,6 +1,18 @@
 <% provide(:title, 'select movie') %>
 <div class="row">
-<div class="col-sm-9"></div>
+<div class="col-sm-9">
+  <%= form_for :tmdb_movies, method: :get do |f| %>
+    <div class="input-group input-group-lg">
+      <%= label_tag :keywords, nil, class: "sr-only" %>
+      <%= text_field_tag :keywords, @keywords, 
+            placeholder: "Movie Title", 
+            class: "form-control input-lg" %>
+      <span class="input-group-btn">
+        <%= submit_tag "find movies", class: "btn btn-primary btn-lg" %>
+      </span>
+    </div>
+  <% end %>
+</div>
 <div class="col-sm-2">
 <%= link_to "skip - add manually", new_movie_path %>
 </div>
@@ -8,9 +20,11 @@
 <ul class="basic">
 <% @tmdb_movies.each do |tmdb_movie| %>
   <li>
-    <%= poster_for tmdb_movie %>
+    <%= poster_for_movie tmdb_movie %>
     <%= link_to tmdb_movie["title"], tmdb_movie_path(tmdb_movie["id"]) %>
     <%= link_to "select", new_movie_path( tmdb_id: tmdb_movie["id"] ) %>
   </li>
 <% end %>
 </ul>
+
+<%= will_paginate @tmdb_movies %>

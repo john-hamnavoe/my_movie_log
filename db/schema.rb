@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215101638) do
+ActiveRecord::Schema.define(version: 20180215230820) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -22,6 +22,35 @@ ActiveRecord::Schema.define(version: 20180215101638) do
     t.datetime "updated_at", null: false
     t.index ["imdb_id"], name: "index_movies_on_imdb_id", unique: true
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id", unique: true
+  end
+
+  create_table "payment_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscription_periods", force: :cascade do |t|
+    t.string "name"
+    t.integer "months"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.date "start_date"
+    t.decimal "amount", precision: 5, scale: 2
+    t.integer "subscription_period_id"
+    t.date "end_date"
+    t.integer "payment_type_id"
+    t.string "reference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_type_id"], name: "index_subscriptions_on_payment_type_id"
+    t.index ["subscription_period_id"], name: "index_subscriptions_on_subscription_period_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

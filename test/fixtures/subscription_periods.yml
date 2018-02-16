@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: monthly
+  months: 1
+
+two:
+  name: annually
+  months: 12

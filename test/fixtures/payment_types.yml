@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: standing order
+
+two:
+  name: credit card
+  
+three:
+  name: direct debit

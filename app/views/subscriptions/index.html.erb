@@ -1,0 +1,18 @@
+<% provide(:title, 'your subscriptions') %>
+
+<%= link_to "add new subscription", new_subscription_path %>
+
+<div class="row">
+  <div class="col-md-11">
+    <table>
+        <tr>
+        <th>name</th>
+        <th>amount</th> 
+        <th>start_date</th>
+        <th>end_date</th>
+        <th/>
+      </tr>
+      <%= render @subscriptions %>
+    </table>
+  </div>
+</div>

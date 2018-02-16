@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  user: michael
+  start_date: 2018-02-15
+  amount: 17.90
+  subscription_period: one
+  end_date: 2018-02-15
+  payment_type: one
+  reference: subone
+
+two:
+  name: A MyString 2
+  user: michael
+  start_date: 2018-02-15
+  amount: 59.99
+  subscription_period: two
+  payment_type: two
+  reference: subtwo
+  
+three:
+  name: Archer Sub 1
+  user: archer
+  start_date: 2018-02-15
+  amount: 70.99
+  subscription_period: two
+  payment_type: two
+  reference: archersubone

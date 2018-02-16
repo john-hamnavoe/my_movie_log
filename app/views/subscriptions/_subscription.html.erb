@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to subscription.name, subscription %></td>
+  <td><%= subscription.amount %></td>
+  <td><%= subscription.start_date %></td>
+  <td><%= subscription.end_date %></td>  
+  <td><%= link_to "edit", edit_subscription_path(subscription.id) %></td>    
+</tr>

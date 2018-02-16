@@ -8,8 +8,9 @@
     <li>
       <%= link_to "movies", movies_path %>
     </li>
-    <li><a href="#section2">views</a></li>
       <% if logged_in? %>
+        <li><a href="#section2">views</a></li>
+        <li><%= link_to "subscriptions", subscriptions_path %></li>
         <% if current_user.admin? %>
           <li>
             <%= link_to "users", users_path %>

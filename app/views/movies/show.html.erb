@@ -1,10 +1,24 @@
 <% provide(:title, 'movie') %>
 <div class="container-fluid">
-  <div class="card">
-    <%= poster_for_path @movie.tmdb_poster_path, @movie.title, size:300 %>
-    <div class="card-container">
-      <h4><b><%= "#{@movie.title} (#{@movie.year})" %></b></h4> 
-      <%= link_to "imdb", "http://www.imdb.com/title/#{@movie.imdb_id}/", target: '_blank' %>
-    </div>
-  </div>
+  <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <%= poster_for_path @movie.tmdb_poster_path, @movie.title, size:300 %>
+          <div class="card-container">
+            <h4><b><%= "#{@movie.title} (#{@movie.year})" %></b></h4> 
+            <%= link_to "imdb", "http://www.imdb.com/title/#{@movie.imdb_id}/", target: '_blank' %>
+          </div>
+        </div>    
+      </div>
+      <div class="col-md-8">
+          <div class="row" style="height:220px">
+              <div class="card col-md-12" style="height:200px">Span Rating</br>
+              To be worked out!</div>
+          </div>
+          <div class="row" >
+              <div class="card col-md-12" style="height:250px">Span Reviews</div>
+          </div>
+      </div>
+  </div>  
 </div>
+

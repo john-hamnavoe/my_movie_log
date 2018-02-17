@@ -24,6 +24,7 @@ class MoviesNewTest < ActionDispatch::IntegrationTest
                                            tmdb_poster_path: @movie.tmdb_poster_path } }
     end
     assert_redirected_to movies_path
+    assert_not flash.empty?
   end
   
   test 'should handle failure to create' do

@@ -14,6 +14,7 @@ class MoviesEditTest < ActionDispatch::IntegrationTest
     patch movie_path(@movie), params: {movie: {title: "",
                                             year: 1849 }}
     assert_template 'movies/edit'
+    assert flash.empty?
   end
   
   test "successful edit" do

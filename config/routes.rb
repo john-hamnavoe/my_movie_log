@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :tmdb_movies,         only: [:index, :show]
   resources :subscriptions
   resources :locations
+  resources :watches
 end

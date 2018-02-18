@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218101830) do
+ActiveRecord::Schema.define(version: 20180218171320) do
 
   create_table "location_types", force: :cascade do |t|
     t.string "name"
@@ -87,6 +87,23 @@ ActiveRecord::Schema.define(version: 20180218101830) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "watches", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.date "date"
+    t.integer "rating"
+    t.text "review"
+    t.integer "location_id"
+    t.integer "subscription_id"
+    t.decimal "paid", precision: 5, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_watches_on_location_id"
+    t.index ["movie_id"], name: "index_watches_on_movie_id"
+    t.index ["subscription_id"], name: "index_watches_on_subscription_id"
+    t.index ["user_id"], name: "index_watches_on_user_id"
   end
 
 end

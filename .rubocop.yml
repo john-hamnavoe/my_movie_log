@@ -9,10 +9,6 @@ AllCops:
     - 'app/mailers/application_mailer.rb'
     - 'app/jobs/application_job.rb'
  
-# Prefer &&/|| over and/or.
-Style/AndOr:
-  Enabled: true
- 
 # Do not use braces for hash literals when they are the last argument of a
 # method call.
 Style/BracesAroundHashParameters:

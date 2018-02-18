@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to location.name, location %></td>
+  <td><%= location.location_type.name %></td>
+  <td><%= link_to location.website, location.website, target: '_blank' %></td>
+  <td><%= location.post_code %></td>  
+  <td><%= link_to "edit", edit_location_path(location.id) %></td>    
+</tr>

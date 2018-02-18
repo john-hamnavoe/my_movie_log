@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class SubscriptionTest < ActiveSupport::TestCase
-
   def setup
     @subscription = Subscription.new(name: "unlimited", start_date: '1/1/2016'.to_date,
       amount: 17.90, subscription_period_id: subscription_periods(:one).id, 

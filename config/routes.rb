@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :movies,              except: [:destroy]
   resources :tmdb_movies,         only: [:index, :show]
   resources :subscriptions
+  resources :locations
 end

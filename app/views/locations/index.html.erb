@@ -1,0 +1,22 @@
+<% provide(:title, 'locations') %>
+
+<% if logged_in? %>
+  <%= link_to "add new location", new_location_path %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-11">
+    <table>
+        <tr>
+        <th>name</th>
+        <th>type</th> 
+        <th>website</th>
+        <th>postcode</th>
+        <th/>
+      </tr>
+      <%= render @locations %>
+    </table>
+  </div>
+</div>
+
+<%= will_paginate @locations %>

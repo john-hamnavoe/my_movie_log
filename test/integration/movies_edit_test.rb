@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class MoviesEditTest < ActionDispatch::IntegrationTest
-  
   def setup
     @user = users(:michael)
     @movie = movies(:movie_one)

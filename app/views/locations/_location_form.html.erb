@@ -1,0 +1,24 @@
+<%= form_for(@location) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+  
+  <%= f.label :location_type_id %>
+  <%= collection_select(:location, :location_type_id, 
+    LookUpService.lookup_values(:location_types), :id, :name, {include_blank: true}, 
+    {class: 'form-control'}) %>  
+ 
+  <%= f.label :website %>
+  <%= f.text_field :website, class: 'form-control' %>
+  
+  <%= f.label :post_code %>
+  <%= f.text_field :post_code, class: 'form-control' %>  
+  
+  <div class="row">    
+    <div class="col-sm-6">
+      <%= f.submit "save", class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-6">
+      <%= link_to "cancel", locations_path, method: :get, class: "btn btn-default form-control" %>
+    </div>
+<% end %>

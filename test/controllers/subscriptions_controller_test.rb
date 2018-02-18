@@ -23,6 +23,9 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     subscriptions = assigns(:subscriptions)
     assert_equal 2, subscriptions.count
     assert_not subscriptions.any? { |s| s.user_id != @user_michael.id }
+    #eager load test so not N+1 if access these lookups
+    assert subscriptions[0].association(:subscription_period).loaded?
+    assert subscriptions[0].association(:payment_type).loaded?
     log_in_as(@user_archer)
     get subscriptions_path
     assert :success    

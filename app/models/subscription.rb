@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Subscription < ApplicationRecord
+  default_scope { includes(:subscription_period, :payment_type) }
+
   belongs_to :user
   belongs_to :subscription_period
   belongs_to :payment_type, optional: true

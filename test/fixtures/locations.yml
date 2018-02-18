@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: location one
+  location_type: one
+  website: www.website.com
+  post_code: G612BN
+
+two:
+  name: location two
+  location_type: two
+  website: MyString
+  post_code: G612BN

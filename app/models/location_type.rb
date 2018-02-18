@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class PaymentType < ApplicationRecord
+class LocationType < ApplicationRecord
   validates :name, uniqueness: { case_sensitive: false }
 end

@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215230820) do
+ActiveRecord::Schema.define(version: 20180218101830) do
+
+  create_table "location_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_location_types_on_name", unique: true
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.integer "location_type_id"
+    t.string "website"
+    t.string "post_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_type_id"], name: "index_locations_on_location_type_id"
+    t.index ["name"], name: "index_locations_on_name", unique: true
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -28,6 +46,7 @@ ActiveRecord::Schema.define(version: 20180215230820) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_payment_types_on_name", unique: true
   end
 
   create_table "subscription_periods", force: :cascade do |t|
@@ -35,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180215230820) do
     t.integer "months"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_subscription_periods_on_name", unique: true
   end
 
   create_table "subscriptions", force: :cascade do |t|

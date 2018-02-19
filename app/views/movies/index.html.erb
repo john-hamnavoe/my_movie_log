@@ -4,8 +4,10 @@
   <%= link_to "add new movie", tmdb_movies_path %>
 <% end %>
 
-<ul class="basic">
-  <%= render @movies %>
-</ul>
+<div class="row">
+  <ol class="list-group">
+    <%= render @movies %>
+  </ol>
+</div>
 
 <%= will_paginate @movies %>

@@ -19,4 +19,8 @@ class Subscription < ApplicationRecord
       errors.add(:end_date, 'end date must be after start date')
     end
   end
+  
+  def self.subscriptions_for_user(user_id)
+    Subscription.where(user_id: user_id).order(:name)
+  end
 end

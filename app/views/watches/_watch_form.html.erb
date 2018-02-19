@@ -1,0 +1,40 @@
+<h4><%= "recording the watching of #{@movie.title}" %></h4>
+<%= form_for(@watch) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :movie_id %>
+   <div class="row">    
+    <div class="col-sm-6">  
+      <%= f.label :date %>
+      <%= f.date_field :date%>
+    </div>
+    <div class="col-sm-6">  
+      <%= f.label :rating %>
+      <%= f.number_field :rating, in: 0..5, step: 1, class: 'form-control' %>
+    </div>
+  </div>
+ 
+  <%= f.label :paid %>
+  <%= f.number_field :paid, in: 0.0..10000.0, step: 0.01, class: 'form-control' %>
+  
+  <%= f.label :subscription_id %>  
+  <%= collection_select(:watch, :subscription_id, 
+    @subscriptions, :id, :name, {include_blank: true}, 
+    {class: 'form-control'}) %>     
+  
+  <%= f.label :location_id %>  
+  <%= collection_select(:watch, :location_id, 
+    LookUpService.lookup_values(:location), :id, :name, {include_blank: true}, 
+    {class: 'form-control'}) %>   
+
+  <%= f.label :review %>
+  <%= f.text_area :review, class: 'form-control' %>
+  
+  <div class="row">    
+    <div class="col-sm-6">
+      <%= f.submit "save", class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-6">
+      <%= link_to "cancel", watches_path, method: :get, class: "btn btn-default form-control" %>
+    </div>
+  </div>
+<% end %>

@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  movie: one
-  date: 2018-02-18
+  user: michael
+  movie: movie_one
+  date: 2017-12-18
   rating: 1
   review: MyText
   location: one
@@ -11,11 +11,42 @@ one:
   paid: 9.99
 
 two:
-  user: two
-  movie: two
+  user: michael
+  movie: movie_two
   date: 2018-02-18
   rating: 1
   review: MyText
   location: two
   subscription: two
   paid: 9.99
+
+three:
+  user: michael
+  movie: movie_two
+  date: 2016-02-20
+  rating: 1
+  review: MyText
+  location: two
+  subscription: two
+  paid: 9.99
+  
+four:
+  user: michael
+  movie: movie_two
+  date: 2018-02-20
+  rating: 1
+  review: MyText
+  location: two
+  subscription: two
+  paid: 9.99
+
+five:
+  user: archer
+  movie: movie_two
+  date: 2018-13-18
+  rating: 1
+  review: MyText
+  location: two
+  subscription: two
+  paid: 9.99
+

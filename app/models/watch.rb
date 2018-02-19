@@ -1,4 +1,6 @@
 class Watch < ApplicationRecord
+  default_scope { includes(:movie).order(date: :desc) } 
+
   belongs_to :user
   belongs_to :movie
   belongs_to :location, optional: true

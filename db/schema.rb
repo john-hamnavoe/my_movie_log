@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218171320) do
+ActiveRecord::Schema.define(version: 20180220165559) do
 
   create_table "location_types", force: :cascade do |t|
     t.string "name"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 20180218171320) do
     t.index ["name"], name: "index_payment_types_on_name", unique: true
   end
 
+  create_table "subscription_payments", force: :cascade do |t|
+    t.integer "subscription_id"
+    t.decimal "amount", precision: 5, scale: 2
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_subscription_payments_on_subscription_id"
+  end
+
   create_table "subscription_periods", force: :cascade do |t|
     t.string "name"
     t.integer "months"
@@ -68,6 +78,7 @@ ActiveRecord::Schema.define(version: 20180218171320) do
     t.string "reference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "next_due_date"
     t.index ["payment_type_id"], name: "index_subscriptions_on_payment_type_id"
     t.index ["subscription_period_id"], name: "index_subscriptions_on_subscription_period_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"

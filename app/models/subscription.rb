@@ -6,7 +6,8 @@ class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :subscription_period
   belongs_to :payment_type, optional: true
-
+  has_many  :subscription_payments
+  
   validates :name, presence: true, length: { maximum: 75 }
   validates :amount, presence: true
   validates :start_date, presence: true
@@ -22,5 +23,10 @@ class Subscription < ApplicationRecord
   
   def self.subscriptions_for_user(user_id)
     Subscription.where(user_id: user_id).order(:name)
+  end
+
+  def self.subscriptions_due
+    today = Date::today
+    Subscription.where(next_due_date: nil).or(Subscription.where('next_due_date <= ?', today))    
   end
 end

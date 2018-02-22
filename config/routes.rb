@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'  
+  
+  # resources 
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
@@ -17,4 +19,15 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :locations
   resources :watches
+  
+  # charts
+  namespace :charts do 
+    namespace :users do 
+      namespace :watches do 
+        get 'watch'
+        get 'location_cinema'
+        get 'rating'
+      end
+    end
+  end
 end

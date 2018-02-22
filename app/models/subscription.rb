@@ -27,6 +27,8 @@ class Subscription < ApplicationRecord
 
   def self.subscriptions_due
     today = Date::today
-    Subscription.where(next_due_date: nil).or(Subscription.where('next_due_date <= ?', today))    
+    Subscription.where(next_due_date: nil).or(
+      Subscription.where('next_due_date <= ?', today)).where(
+      "end_date is null OR end_date >= ?", today )    
   end
 end

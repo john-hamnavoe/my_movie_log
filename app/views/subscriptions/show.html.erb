@@ -1,3 +1,30 @@
 <% provide(:title, 'subscription') %>
 
 <%= link_to "back to subscriptions", subscriptions_path %>
+
+<h4><small>subscription</small></h4>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <b>name:</b> <%= @subscription.name %> 
+    <b>next due:</b> <%= @subscription.next_due_date %>
+  </div>
+</div>
+
+<h4><small>payments</small></h4>
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <table>
+      <tr>
+        <th>start date</th>
+        <th>end date</th> 
+        <th>amount</th>
+      </tr>
+      <%= render @subscription_payments %>
+    </table>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-5 col-md-offset-2">
+      <%= will_paginate @subscription_payments %>
+    </div>
+</div>

@@ -42,6 +42,8 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     assert :success  
     subscription = assigns(:subscription)
     assert_not subscription.nil?
+    subscription_payments = assigns(:subscription_payments)
+    assert_not subscription_payments.nil?    
   end
 
   test "show redirect if invalid request" do

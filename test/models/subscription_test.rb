@@ -56,6 +56,15 @@ class SubscriptionTest < ActiveSupport::TestCase
     @subscription.next_due_date = nil
     @subscription.save!
     subs = Subscription.subscriptions_due
-    assert_equal original_subs_count+1, subs.count, 'subscriptions no due are found'      
+    assert_equal original_subs_count+1, subs.count, 'subscriptions no due are found' 
+    @subscription.next_due_date = Date::today
+    @subscription.end_date = Date::today
+    @subscription.save!
+    subs = Subscription.subscriptions_due
+    assert_equal original_subs_count+1, subs.count, 'subscriptions due today and end today found'
+    @subscription.end_date = (Date::today).advance(days: -1)
+    @subscription.save!
+    subs = Subscription.subscriptions_due
+    assert_equal original_subs_count, subs.count, 'subscriptions due today and end yesterday not found'    
   end
 end

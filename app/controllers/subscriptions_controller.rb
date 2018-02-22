@@ -8,21 +8,25 @@ class SubscriptionsController < ApplicationController
   end
 
   def show
-    subscription
+    find_subscription
+    redirect_to subscriptions_path and return if @subscription.nil?    
+    @subscription_payments = SubscriptionPayment.where(
+      subscription_id: @subscription.id).order(start_date: :desc).paginate(
+      page: params[:page])
   end
 
   def edit
-    subscription
+    find_subscription
+    redirect_to subscriptions_path and return if @subscription.nil?
   end
 
   def update
-    subscription = Subscription.find_by(user_id: current_user.id, id: params[:id])
-    redirect_to subscriptions_path and return if subscription.nil?
-    if subscription.update_attributes(subscription_params)
+    find_subscription
+    redirect_to subscriptions_path and return if @subscription.nil?
+    if @subscription.update_attributes(subscription_params)
       flash[:success] = 'subscription updated'
       redirect_to subscriptions_path
     else
-      @subscription = subscription
       render 'edit'
     end
   end
@@ -50,8 +54,7 @@ class SubscriptionsController < ApplicationController
         :reference, :subscription_period_id, :payment_type_id)
     end
 
-    def subscription
+    def find_subscription
       @subscription = Subscription.find_by(user_id: current_user.id, id: params[:id])
-      redirect_to subscriptions_path and return if @subscription.nil?
     end
 end

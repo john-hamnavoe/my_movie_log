@@ -25,7 +25,7 @@ class WatchesController < ApplicationController
     @watch.user_id = current_user.id
     if @watch.save
       flash[:success] = 'movie watch added'
-      redirect_to watches_path
+      redirect_to movies_path
     else
       find_movie_and_subscriptions(@watch.movie_id)
       render 'new'

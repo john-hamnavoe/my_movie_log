@@ -7,9 +7,11 @@ class SubscriptionPayment < ApplicationRecord
 
   validate  :end_date_after_start_date?
 
+  self.per_page = 10
+  
   def end_date_after_start_date?
     return if [start_date.blank?, end_date.blank?].any?
-    if start_date > end_date
+    if start_date >= end_date
       errors.add(:end_date, 'end date must be after start date')
     end
   end  

@@ -28,16 +28,6 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
     assert_not location.nil?
   end
 
-  test "should get show if logged in or not" do
-    get location_path(@location.id)
-    assert :success
-    log_in_as(users(:michael))
-    get location_path(@location.id)
-    assert :success
-    location = assigns(:location)
-    assert_equal @location.id, location.id
-  end
-
   test "should get edit if logged in" do
     get edit_location_path(@location.id)
     assert_redirected_to login_path

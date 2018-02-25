@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220165559) do
+ActiveRecord::Schema.define(version: 20180224225255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "location_types", force: :cascade do |t|
     t.string "name"
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180220165559) do
     t.string "tmdb_poster_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index "lower((title)::text) gin_trgm_ops", name: "index_lower_title_on_movies", using: :gin
     t.index ["imdb_id"], name: "index_movies_on_imdb_id", unique: true
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id", unique: true
   end

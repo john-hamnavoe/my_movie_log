@@ -4,20 +4,32 @@ class MoviesController < ApplicationController
   before_action :logged_in_user, except: [:show, :index]
 
   def index
-    @movies = Movie.all.order(:title).paginate(page: params[:page])
+    if params[:keywords].present?
+      @movies = Movie.where('lower(title) LIKE :keyword',
+        keyword: '%' + params[:keywords].downcase + '%').order(:title).paginate(page: params[:page])
+      @keywords = params[:keywords]
+    else
+      @movies = Movie.all.order(:title).paginate(page: params[:page])
+    end
   end
 
   def show
     @movie = Movie.find_by(id: params[:id])
+    @watched_redirect = params[:watched].present?
   end
 
   def create
     @movie = Movie.new(movie_params)
-    if @movie.save
-      flash[:success] = 'movie created'
-      redirect_to movies_path
+    save_movie
+  end
+
+  def create_from_tmdb
+    if params[:tmdb_id].present?
+      @movie = Movie.new
+      set_movie_defaults(params[:tmdb_id])
+      save_movie
     else
-      render 'new'
+      redirect_to movies_path
     end
   end
 
@@ -60,5 +72,14 @@ class MoviesController < ApplicationController
       @movie.tmdb_id = tmdb_id
       @movie.imdb_id = movie['imdb_id']
       @movie.tmdb_poster_path = movie['poster_path']
+    end
+
+    def save_movie
+      if @movie.save
+        flash[:success] = 'movie created'
+        redirect_to movies_path
+      else
+        render 'new'
+      end
     end
 end

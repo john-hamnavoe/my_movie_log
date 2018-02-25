@@ -11,10 +11,20 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     get movies_path
     assert_response :success
     assert_select "a[href=?]", tmdb_movies_path, { count: 0 }
+    movies = assigns(:movies)
+    assert_equal Movie.count, movies.count
     log_in_as(users(:michael))
     get movies_path
     assert_response :success
     assert_select "a[href=?]", tmdb_movies_path, { count: 1 }
+    get movies_path, params: { keywords: "My Movie 1" }
+    assert_response :success    
+    movies = assigns(:movies)
+    assert_equal 1, movies.count   
+    get movies_path, params: { keywords: "my MOVIE 1" }
+    assert_response :success    
+    movies = assigns(:movies)
+    assert_equal 1, movies.count      
   end
   
   test "should redirect new if not logged on" do

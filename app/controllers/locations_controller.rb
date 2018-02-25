@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 class LocationsController < ApplicationController
-  before_action :logged_in_user, except: [:show, :index]
+  before_action :logged_in_user, except: [:index]
 
   def index
     @locations = Location.all.order(:name).paginate(page: params[:page])
-  end
-
-  def show
-    @location = Location.find_by(id: params[:id])
   end
 
   def new

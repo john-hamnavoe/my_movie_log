@@ -15,6 +15,13 @@
 
 <div class="row">
   <div class="col-sm-12">
+    <h4>Subscriptions Used <small>(excludes movies where no subscription recorded)</small></h4>
+    <%= line_chart charts_users_subscriptions_watch_path, height: "200px" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
     <h4>Ratings Summary <small>(excludes unrated movies)</small></h4>
     <%= bar_chart charts_users_watches_rating_path, {download: true, height: "100px"} %>
   </div>

@@ -7,6 +7,7 @@ class Subscription < ApplicationRecord
   belongs_to :subscription_period
   belongs_to :payment_type, optional: true
   has_many  :subscription_payments
+  has_many  :watches
   
   validates :name, presence: true, length: { maximum: 75 }
   validates :amount, presence: true

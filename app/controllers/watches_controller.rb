@@ -50,6 +50,14 @@ class WatchesController < ApplicationController
     end
   end
 
+  def destroy
+    @watch = Watch.find_by(id: params[:id], user_id: current_user.id)
+    redirect_to watches_path and return if @watch.nil?
+    @watch.destroy
+    flash[:success] = "watch deleted"
+    redirect_to watches_path
+  end
+
   private
 
   def watch_params

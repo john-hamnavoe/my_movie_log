@@ -1,0 +1,17 @@
+<% provide(:title, 'friend requests') %>
+
+<h3><small>incoming friend requests</small></h3>
+<hr>
+<ul class="list-group">
+<% @incoming.each do |friend_request| %>
+  <%= render 'incoming_friend_request', friend_request: friend_request %>
+<% end %>
+</ul>
+
+<h3><small>outgoing friend requests</small></h3>
+<hr>
+<ul class="list-group">
+<% @outgoing.each do |friend_request| %>
+  <%= render 'outgoing_friend_request', friend_request: friend_request %>
+<% end %>
+</ul>

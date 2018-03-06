@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :subscriptions,       except: [:destroy]
   resources :locations,           except: [:destroy, :show]
   resources :watches
+  delete 'friends/destroy'
+  resources :friend_requests
   
   # charts
   namespace :charts do 

@@ -1,0 +1,16 @@
+<li class="list-group-item clearfix">
+  <div class="row">
+    <div class="col-sm-4">
+      <%= gravatar_for friend_request.user, size: 55 %>
+      <%= friend_request.user.name %>
+    </div>
+    <div class="col-sm-2">
+      <br>
+      <%= link_to "accept", friend_request_path(friend_request.id), method: :patch, class: "btn btn-primary form-control" %>
+    </div>    
+    <div class="col-sm-2">
+      <br>
+      <%= link_to "reject", friend_request_path(friend_request.id), method: :delete, class: "btn btn-default form-control" %>
+    </div>
+  </div>
+</li>

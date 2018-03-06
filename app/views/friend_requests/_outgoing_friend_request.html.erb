@@ -1,0 +1,12 @@
+<li class="list-group-item clearfix">
+  <div class="row">
+    <div class="col-sm-4">
+      <%= gravatar_for friend_request.friend, size: 55 %>
+      <%= friend_request.friend.name %>
+    </div>
+    <div class="col-sm-2">
+      <br>
+      <%= link_to "cancel", friend_request_path(friend_request.id), method: :delete, class: "btn btn-default form-control" %>
+    </div>
+  </div>
+</li>

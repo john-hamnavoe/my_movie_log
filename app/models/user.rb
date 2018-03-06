@@ -2,7 +2,6 @@
 
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
-  attr_reader :following_count, :followers_count
 
   before_save :downcase_email
   before_create :create_activation_digest
@@ -16,6 +15,10 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   has_many :subscriptions, dependent: :destroy
+  has_many :friend_requests, dependent: :destroy
+  has_many :pending_friends, through: :friend_requests, source: :friend  
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships  
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -66,6 +69,10 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def remove_friend(friend)
+    self.friends.destroy(friend)
   end
 
   private

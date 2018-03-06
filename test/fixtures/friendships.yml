@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: user_5
+  friend: user_6
+  
+one_inverse:
+  user: user_6
+  friend: user_5
+
+two:
+  user: user_7
+  friend: user_8
+
+two_inverse:
+  user: user_8
+  friend: user_7
+

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: user_1
+  friend: user_2
+
+two:
+  user: user_4
+  friend: user_3

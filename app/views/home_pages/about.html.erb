@@ -1,1 +1,91 @@
 <% provide(:title, 'about') %>
+
+<h2>Purpose</h2>
+
+<p>
+This is hobby site created using Ruby on Rails for a bit of fun and learning. 
+<br>
+It allows you to track the movies you watch and the subscriptions you use to watch them.
+<br>
+After recently signing up to a cineworld unlimited card I thought be good to track how much use I had from it.
+<br>
+As noted above the site is mostly RoR, in future I may add some React or other tech to improve user experience. 
+<br>
+It is really just for fun (if you think programming is fun you may understand that!). Even though it is fun the the site should be fully functional.
+</p>
+
+<h2>Usage</h2>
+
+<h3>Sign Up</h3>
+
+If you don't have an account <%= link_to "signup here", signup_path  %>. <br>
+You will get an activation email click the link you should be able to log in.<br>
+The site uses heroku free dyno's (as it is just for fun) so things can take a few seconds to happen. <br>
+(If you have a <%= link_to "gravatar", "https://gravatar.com", target: '_blank' %> with email you sign up your avatar will appear on the site.)
+
+<h3>Set up - Subscriptions, Movies, Locations</h3>
+
+<h4>Subscriptions</h4>
+<p>
+  Once you are logged in go to the subscriptions page using links on the left. <br>
+  Click to add the subscription you have and enter the start date, period, and the amount. <br>
+  The site has scheduled daily job to calculate new payments on the due date so once you have setup you can forget about it. <br>
+  You can go back to the subscription later and see how much you have paid for it over time.<br>
+</p>
+
+<h4>Movies</h4>
+<p>
+  The site has local movie store, however we use <%= link_to "The Movie Database (tmdb)", "https://www.themoviedb.org/", target: '_blank' %>
+   to get posters and links to imdb. <br>
+  Follow the movies link from links on the left this will show you the local movies store. 
+  If you don't find movie you want to record a watch for here then use add movie link. <br>
+  This will take you to a tmdb search (by default it shows 20 most popular movies searched for recently), <br> if your movie is not on that list then search for movie and use buttons to add movie to database.
+</p>
+
+<h4>Locations</h4>
+<p>
+  When recording a watch you can optionally record a location you watched the movie at. <br>
+  If you don't see the location on drop down follow the locations link on the left and add location <br>
+  (For the web-address link to work should be full address with the http bit as well.)
+</p>
+
+<h3>Recording and Seeing Movies You Watched</h3>
+
+<h4>Recording a new Watch</h4>
+<p>
+If you have watched movie and you want to log that in the database go to the movies link on the left.<br>
+Search for the movie (if you don't find it see above about adding it), press the eye button and you will be taken to the watch editor.<br>
+You can then enter the details date, rating, review etc. 
+</p>
+
+<h4>Seeing what you watched</h4>
+Just click the watches link on the left you will see (and can edit) what you watched.
+
+<h3>Friends and Statistics</h3>
+
+<h4>Friends</h4>
+You can add friends by going to the users link and clicking the add friends button on the person you want to be friends with. <br>
+At moment there is no email notification. You can see outgoing and incoming friend requests by clicking the account drop down menu on the left and selecting the friend requests option. <br>
+Once you are friends you can see what your friends have watched on the friends feed by clicking the friends watched link on the left.
+
+<h4>Statistics</h4>
+If you click on the accounts drop down on the left and select the my profile link you will see a grahpical summary of your movie watching.
+
+<hr>
+
+<h3>Future</h3>
+Thats all for now some things planned in future are: <br>
+<ul>
+  <li>Email notification for friend requests</li>
+  <li>Improved stats including average cost per movie for subscriptions.</li>
+  <li>Improved home page with site stats.</li>
+  <li>UI improvements by adopting react.</li>
+  <li>See if there is cinema times API.</li>
+</ul> 
+
+
+
+
+
+
+

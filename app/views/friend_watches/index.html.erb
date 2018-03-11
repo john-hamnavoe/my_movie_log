@@ -1,0 +1,6 @@
+<% provide(:title, 'friend watches feed') %>
+<% @watches.each do |friend_watch| %>
+  <%= render 'friend_watch', friend_watch: friend_watch %>
+<% end %>
+
+<%= will_paginate @watches %>

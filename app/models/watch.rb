@@ -8,4 +8,6 @@ class Watch < ApplicationRecord
   
   validates :rating, inclusion: 0..5, allow_nil: true
   validates :date, presence: true
+  
+  self.per_page = 20
 end

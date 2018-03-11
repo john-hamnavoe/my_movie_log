@@ -16,7 +16,7 @@
   <div class="col-sm-2">
     <% if logged_in? %>
       <br>
-      <%= link_to "add new movie", tmdb_movies_path %>
+      <%= link_to "add new movie", tmdb_movies_path(keywords: @keywords) %>
     <% end %>
   </div>
 </div>

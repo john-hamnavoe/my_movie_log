@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'  
+  delete '/logout',  to: 'sessions#destroy'
   
   # resources 
   resources :users
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :watches
   delete 'friends/destroy'
   resources :friend_requests
+  get '/friend_feed', to: 'friend_watches#index'
   
   # charts
   namespace :charts do 

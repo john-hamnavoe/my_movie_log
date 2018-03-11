@@ -1,0 +1,2 @@
+module FriendWatchesHelper
+end

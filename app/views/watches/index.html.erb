@@ -26,7 +26,7 @@
             <h4 class="h4"><%= link_to watch.movie.title, movie_path(id: watch.movie.id, watched: true) %></h4>
           <div class="row">
             <div class="col-sm-6"><h4 class="h5"><%= "watched on #{watch.date}" %></h4></div>            
-            <div class="col-sm-3"><h4 class="h5 pull-right"><%= "your rating: #{watch.rating}" %></h4></div>
+            <div class="col-sm-3"><h4 class="h5 pull-right"><%= "rating: #{watch.rating}" %></h4></div>
             <div class="col-sm-3"><h4 class="h5 pull-right"><%= "likes: #{watch.watch_likes.length}" %></h4></div>
           </div>
           <hr style="margin-bottom: 0.5em;">

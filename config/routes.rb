@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :subscriptions,       except: [:destroy]
   resources :locations,           except: [:destroy, :show]
   resources :watches
+  resources :watch_likes,         only: [:create, :destroy]
   delete 'friends/destroy'
   resources :friend_requests
   get '/friend_feed', to: 'friend_watches#index'

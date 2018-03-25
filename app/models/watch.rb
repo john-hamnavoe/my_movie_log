@@ -6,6 +6,8 @@ class Watch < ApplicationRecord
   belongs_to :location, optional: true
   belongs_to :subscription, optional: true
   
+  has_many :watch_likes, dependent: :destroy
+  
   validates :rating, inclusion: 0..5, allow_nil: true
   validates :date, presence: true
   

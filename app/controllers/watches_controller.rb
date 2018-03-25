@@ -4,7 +4,7 @@ class WatchesController < ApplicationController
   before_action :logged_in_user
 
   def index
-    @watches = Watch.where(user_id: current_user.id).details.paginate(page: params[:page])
+    @watches = Watch.eager_load(:watch_likes).where(user_id: current_user.id).details.paginate(page: params[:page])
   end
 
   def show

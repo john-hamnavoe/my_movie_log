@@ -7,14 +7,23 @@
     	<div class="col-sm-2">
     	  <%= poster_for_path friend_watch.movie.tmdb_poster_path, friend_watch.movie.title, size: 92 %>
     	</div>
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <h3><%= friend_watch.movie.title %></h3>
         <p><b>on</b> <%= friend_watch.date %> <b> and rated it </b> <%= friend_watch.rating %> </p>
         <hr style="margin-bottom: 0.5em;">
         <p>
   			  <%= friend_watch.review %>
   		  </p>
-      </div>   
+      </div>
+    	<div class="col-sm-1">
+    	  <% if watch_like = @watch_likes.detect { |wl| wl.watch_id == friend_watch.id } %>
+      	 <%= link_to "<button type=\"button\"><i class=\"fa fa-thumbs-up\"></i></button>".html_safe,
+    	      watch_like_path(watch_like.id), method: :delete %>  	  
+    	  <% else %>
+    	    <%= link_to "<button type=\"button\"><i class=\"fa fa-thumbs-o-up\"></i></button>".html_safe,
+    	      watch_likes_path(watch_id: friend_watch.id), method: :post %>
+    	  <% end %>
+    	</div>      
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@ require 'test_helper'
 class LocationsNewTest < ActionDispatch::IntegrationTest
   def setup
     @location = Location.new(name: 'a cinema', 
-                             location_type_id: location_types(:one).id, 
+                             location_type_id: movie_location_types(:one).id, 
                              website: "http://www.acinema.com", 
                              post_code: "G612BN" )
   end

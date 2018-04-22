@@ -1,6 +1,8 @@
 class SubscriptionPayment < ApplicationRecord
   belongs_to :subscription
   
+  has_many :watches
+  
   validates :end_date, presence: true
   validates :start_date, presence: true
   validates :amount, presence: true

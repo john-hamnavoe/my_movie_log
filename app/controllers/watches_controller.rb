@@ -24,6 +24,7 @@ class WatchesController < ApplicationController
     @watch = Watch.new(watch_params)
     @watch.user_id = current_user.id
     if @watch.save
+      update_subscription_payments
       flash[:success] = 'movie watch added'
       redirect_to movies_path
     else
@@ -42,6 +43,7 @@ class WatchesController < ApplicationController
     @watch = Watch.find_by(id: params[:id], user_id: current_user.id)
     redirect_to watches_path and return if @watch.nil?
     if @watch.update_attributes(watch_params)
+      update_subscription_payments
       flash[:success] = "watch updated"
       redirect_to watches_path
     else
@@ -68,5 +70,9 @@ class WatchesController < ApplicationController
   def find_movie_and_subscriptions(movie_id)
     @movie = Movie.find_by(id: movie_id)
     @subscriptions = Subscription.subscriptions_for_user(current_user.id)
+  end
+
+  def update_subscription_payments 
+    SubscriptionPaymentAllocationService.new(watch_id: @watch.id).perform
   end
 end

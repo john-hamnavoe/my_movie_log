@@ -2,4 +2,6 @@
   <td><%= subscription_payment.start_date %></td>
   <td><%= subscription_payment.end_date %></td>
   <td><%= subscription_payment.amount %></td>
+  <td><%= subscription_payment.watches_count %></td>
+  <td><%= cost_per_movie(subscription_payment.amount, subscription_payment.watches_count) %></td>
 </tr>

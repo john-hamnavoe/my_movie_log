@@ -2,12 +2,16 @@
 
 one:
   name: subscription service
+  type: MovieLocationType
 
 two:
   name: free television
+  type: MovieLocationType
   
 three:
   name: cinema
+  type: MovieLocationType
 
 four:
   name: physical media
+  type: MovieLocationType

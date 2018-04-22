@@ -50,3 +50,12 @@ five:
   subscription: two
   paid: 9.99
 
+six:
+  user: michael
+  movie: movie_two
+  date: 2017-12-18
+  rating: 1
+  review: MyText
+  location: one
+  subscription: one
+  paid: 9.99

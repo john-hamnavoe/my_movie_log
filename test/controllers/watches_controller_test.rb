@@ -14,7 +14,7 @@ class WatchesControllerTest < ActionDispatch::IntegrationTest
     get watches_path
     assert :success
     watches = assigns(:watches)
-    assert_equal 4, watches.count
+    assert_equal 5, watches.count
     assert watches.each_cons(2).all? { |x, y| x[:date] >= y[:date] }, 'Watches returned in order'
   end
 

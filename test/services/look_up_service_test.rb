@@ -18,8 +18,8 @@ class LookUpServiceTest < ActionView::TestCase
     assert_equal 'annually', l[0].name
   end  
   
-  test "test should return location types" do
-    l = LookUpService.lookup_values(:location_types)
+  test "test should return movie location types" do
+    l = LookUpService.lookup_values(:movie_location_types)
     assert_equal 4, l.count
     assert_equal 'cinema', l[0].name
     assert_equal 'subscription service', l[3].name

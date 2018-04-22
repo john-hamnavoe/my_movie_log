@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LocationTest < ActiveSupport::TestCase
   def setup
-    @location = Location.new(name: "new location", location_type: location_types(:one))
+    @location = Location.new(name: "new location", location_type: movie_location_types(:one))
     @stored_location = locations(:one)
   end
   

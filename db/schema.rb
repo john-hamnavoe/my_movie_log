@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325184101) do
+ActiveRecord::Schema.define(version: 20180422091345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20180325184101) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type"
     t.index ["name"], name: "index_location_types_on_name", unique: true
   end
 
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20180325184101) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "watches_count"
     t.index ["subscription_id"], name: "index_subscription_payments_on_subscription_id"
   end
 
@@ -144,9 +146,11 @@ ActiveRecord::Schema.define(version: 20180325184101) do
     t.decimal "paid", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "subscription_payment_id"
     t.index ["location_id"], name: "index_watches_on_location_id"
     t.index ["movie_id"], name: "index_watches_on_movie_id"
     t.index ["subscription_id"], name: "index_watches_on_subscription_id"
+    t.index ["subscription_payment_id"], name: "index_watches_on_subscription_payment_id"
     t.index ["user_id"], name: "index_watches_on_user_id"
   end
 
@@ -156,4 +160,5 @@ ActiveRecord::Schema.define(version: 20180325184101) do
   add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "watch_likes", "users", column: "friend_id"
   add_foreign_key "watch_likes", "watches"
+  add_foreign_key "watches", "subscription_payments"
 end

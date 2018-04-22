@@ -19,7 +19,7 @@ class LocationsEditTest < ActionDispatch::IntegrationTest
   test "successful edit" do
     log_in_as(@user)
     name = "New Location Name!"
-    location_type_id = location_types(:two).id
+    location_type_id = movie_location_types(:two).id
     patch location_path(@location), params: {location: {name: name,
                                             location_type_id: location_type_id }} 
     location = assigns(:location)
@@ -32,7 +32,7 @@ class LocationsEditTest < ActionDispatch::IntegrationTest
   
   test "should redirect update when not logged in" do
     name = "New Location Name!"
-    location_type_id = location_types(:two).id
+    location_type_id = movie_location_types(:two).id
     patch location_path(@location), params: {location: {name: name,
                                             location_type_id: location_type_id }} 
     assert_not flash.empty?

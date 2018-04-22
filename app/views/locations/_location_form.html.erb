@@ -5,7 +5,7 @@
   
   <%= f.label :location_type_id %>
   <%= collection_select(:location, :location_type_id, 
-    LookUpService.lookup_values(:location_types), :id, :name, {include_blank: true}, 
+    LookUpService.lookup_values(:movie_location_types), :id, :name, {include_blank: true}, 
     {class: 'form-control'}) %>  
  
   <%= f.label :website %>

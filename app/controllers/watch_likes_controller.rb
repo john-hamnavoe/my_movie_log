@@ -5,12 +5,12 @@ class WatchLikesController < ApplicationController
 
   def create
     @watch_like = WatchLike.new(watch_id: params[:watch_id], friend_id: current_user.id)
-    
+
     if @watch_like.save
       redirect_to friend_feed_path
     else
       flash[:danger] = @watch_like.errors.full_messages
-      redirect_to friend_feed_path      
+      redirect_to friend_feed_path
     end
   end
 

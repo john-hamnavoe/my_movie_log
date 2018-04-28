@@ -37,5 +37,9 @@ Rails.application.routes.draw do
         get 'watch'
       end
     end
+    namespace :application do
+      namespace :movies do
+      end
+    end
   end
 end

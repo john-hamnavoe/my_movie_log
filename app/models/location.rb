@@ -2,7 +2,7 @@
 
 class Location < ApplicationRecord
   default_scope { includes(:location_type) }
-  
+
   belongs_to :location_type
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false },

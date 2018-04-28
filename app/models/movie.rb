@@ -9,4 +9,16 @@ class Movie < ApplicationRecord
   validates :imdb_id, uniqueness: { allow_nil: true }
 
   self.per_page = 10
+
+  def self.average_rating(id)
+     Watch.where(movie_id: id).where.not(rating: nil).average(:rating).to_f.round(2)
+  end
+
+  def self.total_watches(id)
+    Watch.where(movie_id: id).count
+  end
+
+  def self.last_reviews(id, number_of_reviews)
+    Watch.where(movie_id: id).order(created_at: :desc).limit(number_of_reviews)
+  end
 end

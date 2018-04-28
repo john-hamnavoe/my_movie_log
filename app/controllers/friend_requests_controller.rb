@@ -29,10 +29,10 @@ class FriendRequestsController < ApplicationController
   def update
     @friend_request.accept
     redirect_to friend_requests_path
-  end  
-  private
+  end
 
+  private
     def set_friend_request
       @friend_request = FriendRequest.find(params[:id])
-    end  
+    end
 end

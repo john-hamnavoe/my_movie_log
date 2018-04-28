@@ -4,7 +4,8 @@ class WatchesController < ApplicationController
   before_action :logged_in_user
 
   def index
-    @watches = Watch.eager_load(:watch_likes).where(user_id: current_user.id).details.paginate(page: params[:page])
+    @watches = Watch.eager_load(:watch_likes).where(user_id:
+      current_user.id).details.paginate(page: params[:page])
   end
 
   def show
@@ -44,7 +45,7 @@ class WatchesController < ApplicationController
     redirect_to watches_path and return if @watch.nil?
     if @watch.update_attributes(watch_params)
       update_subscription_payments
-      flash[:success] = "watch updated"
+      flash[:success] = 'watch updated'
       redirect_to watches_path
     else
       find_movie_and_subscriptions(@watch.movie_id)
@@ -56,7 +57,7 @@ class WatchesController < ApplicationController
     @watch = Watch.find_by(id: params[:id], user_id: current_user.id)
     redirect_to watches_path and return if @watch.nil?
     @watch.destroy
-    flash[:success] = "watch deleted"
+    flash[:success] = 'watch deleted'
     redirect_to watches_path
   end
 
@@ -66,13 +67,13 @@ class WatchesController < ApplicationController
     params.require(:watch).permit(:movie_id, :rating, :date, :review, :location_id,
       :subscription_id, :paid)
   end
-  
+
   def find_movie_and_subscriptions(movie_id)
     @movie = Movie.find_by(id: movie_id)
     @subscriptions = Subscription.subscriptions_for_user(current_user.id)
   end
 
-  def update_subscription_payments 
+  def update_subscription_payments
     SubscriptionPaymentAllocationService.new(watch_id: @watch.id).perform
   end
 end

@@ -10,7 +10,7 @@ private
   def self.reset_date_to_start_day(date_advanced, start_date)
     if start_date.day > date_advanced.day
       days_in_month = Time.days_in_month(date_advanced.month, date_advanced.year)
-      if days_in_month >= start_date.day 
+      if days_in_month >= start_date.day
         Date.new(date_advanced.year, date_advanced.month, start_date.day)
       end
     end

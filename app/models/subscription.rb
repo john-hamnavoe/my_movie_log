@@ -8,7 +8,7 @@ class Subscription < ApplicationRecord
   belongs_to :payment_type, optional: true
   has_many  :subscription_payments
   has_many  :watches
-  
+
   validates :name, presence: true, length: { maximum: 75 }
   validates :amount, presence: true
   validates :start_date, presence: true
@@ -21,7 +21,7 @@ class Subscription < ApplicationRecord
       errors.add(:end_date, 'end date must be after start date')
     end
   end
-  
+
   def self.subscriptions_for_user(user_id)
     Subscription.where(user_id: user_id).order(:name)
   end
@@ -30,6 +30,6 @@ class Subscription < ApplicationRecord
     today = Date::today
     Subscription.where(next_due_date: nil).or(
       Subscription.where('next_due_date <= ?', today)).where(
-      "end_date is null OR end_date >= ?", today )    
+        'end_date is null OR end_date >= ?', today)
   end
 end

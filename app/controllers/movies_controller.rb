@@ -5,8 +5,7 @@ class MoviesController < ApplicationController
 
   def index
     if params[:keywords].present?
-      @movies = Movie.where('lower(title) LIKE :keyword',
-        keyword: '%' + params[:keywords].downcase + '%').order(:title).paginate(page: params[:page])
+      @movies = search_movies
       @keywords = params[:keywords]
     else
       @movies = Movie.all.order(:title).paginate(page: params[:page])
@@ -14,7 +13,11 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find_by(id: params[:id])
+    id = params[:id]
+    @movie = Movie.find_by(id: id)
+    @average_rating = Movie.average_rating(id)
+    @total_watches = Movie.total_watches(id)
+    @last_reviews = Movie.last_reviews(id, 2)
     @watched_redirect = params[:watched].present?
   end
 
@@ -81,5 +84,11 @@ class MoviesController < ApplicationController
       else
         render 'new'
       end
+    end
+
+    def search_movies
+      Movie.where('lower(title) LIKE :keyword',
+        keyword: '%' + params[:keywords].downcase + '%').order(:title).paginate(
+          page: params[:page])
     end
 end

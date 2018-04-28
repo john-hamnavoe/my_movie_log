@@ -34,7 +34,7 @@ class LocationsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   private
 
     def location_params

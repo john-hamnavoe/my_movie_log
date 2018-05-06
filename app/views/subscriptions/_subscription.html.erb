@@ -1,11 +1,11 @@
 <tr>
+  <td>
+    <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, 
+      edit_subscription_path(subscription.id)%>
+  </td>     
   <td><%= link_to subscription.name, subscription %></td>
   <td><%= subscription.amount %></td>
   <td><%= subscription.next_due_date %></td>  
   <td><%= subscription.start_date %></td>
   <td><%= subscription.end_date %></td>  
-  <td>
-    <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, 
-      edit_subscription_path(subscription.id)%>
-  </td>      
 </tr>

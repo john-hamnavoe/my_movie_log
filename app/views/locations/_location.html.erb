@@ -1,10 +1,10 @@
 <tr>
+  <td>
+    <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, 
+      edit_location_path(location.id)%>
+  </td>      
   <td><%= location.name %></td>
   <td><%= location.location_type.name %></td>
   <td><%= link_to location.website, location.website, target: '_blank' %></td>
   <td><%= location.post_code %></td>  
-  <td>
-    <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, 
-      edit_location_path(location.id)%>
-  </td>    
 </tr>

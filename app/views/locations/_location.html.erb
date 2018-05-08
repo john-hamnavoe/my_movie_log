@@ -4,7 +4,7 @@
       edit_location_path(location.id)%>
   </td>      
   <td><%= location.name %></td>
-  <td><%= location.location_type.name %></td>
-  <td><%= link_to location.website, location.website, target: '_blank' %></td>
-  <td><%= location.post_code %></td>  
+  <td class="hidesmall"><%= location.location_type.name %></td>
+  <td class="hidesmall"><%= link_to location.website, location.website, target: '_blank' %></td>
+  <td class="hidesmall"><%= location.post_code %></td>  
 </tr>

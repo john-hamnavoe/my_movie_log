@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   resources :tmdb_movies,         only: [:index, :show]
   resources :subscriptions,       except: [:destroy]
   resources :locations,           except: [:destroy, :show]
-  resources :watches
+  resources :watches do
+    get :friends, to: 'watches#friends'   
+  end
   resources :watch_likes,         only: [:create, :destroy]
   delete 'friends/destroy'
   resources :friend_requests

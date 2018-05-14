@@ -7,16 +7,26 @@ class WatchLikesController < ApplicationController
     @watch_like = WatchLike.new(watch_id: params[:watch_id], friend_id: current_user.id)
 
     if @watch_like.save
-      redirect_to friend_feed_path
+      respond_to_like
     else
       flash[:danger] = @watch_like.errors.full_messages
-      redirect_to friend_feed_path
+      respond_to_like
     end
   end
 
   def destroy
     @watch_like = WatchLike.find_by(id: params[:id], friend_id: current_user.id)
+    @watch_id = @watch_like.watch_id if @watch_like
     @watch_like.destroy if @watch_like
-    redirect_to friend_feed_path
+    respond_to_like
+  end
+
+  private
+  
+  def respond_to_like
+    respond_to do |format|
+      format.html { redirect_to friend_feed_path }
+      format.js
+    end
   end
 end

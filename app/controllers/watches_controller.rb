@@ -61,6 +61,14 @@ class WatchesController < ApplicationController
     redirect_to watches_path
   end
 
+  def friends
+    @friends = User.joins(:watch_likes).where('watch_likes.watch_id = ?', params[:watch_id])
+    respond_to do |format|
+      format.html
+      format.js
+    end    
+  end
+
   private
 
   def watch_params

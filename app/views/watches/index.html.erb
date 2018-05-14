@@ -27,7 +27,7 @@
             
 
           <p><%= "watched on #{watch.date}" %></br>
-          <%= "likes: #{watch.watch_likes.length}" %></br>
+          <%= "likes: " %> <%= link_to "#{watch.watch_likes.length}",  watch_friends_path(watch.id), method: :get, remote: true %></br>
           <%= "rating: #{watch.rating}" %></p>
           <hr style="margin-bottom: 0.5em;">
           <span class="pull-left">
@@ -48,3 +48,5 @@
 <% end %>  
 
 <%= will_paginate @watches %>
+
+<div id="friendsModalWindow"></div>

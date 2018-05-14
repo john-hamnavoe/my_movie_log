@@ -37,13 +37,9 @@
             </ul>
           </li>
           <% if logged_in? %>
-            
-            `<li>
-              <div  class="hidesmall">
+            `<li class="hidesmall">
                 <%= gravatar_for(current_user, size: 40, class: 'gravatar img-circle') %>
-              </div>
             `</li>
-            
           <% end %>
         <% else %>
           <li><%= link_to "login", login_path %></li>

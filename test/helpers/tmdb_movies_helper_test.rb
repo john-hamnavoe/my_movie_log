@@ -47,6 +47,9 @@ class TmdbMoviesHelperTest < ActionView::TestCase
     poster_path = poster_for_path(@movie["poster_path"], "title", size:92)
     assert_equal "<img alt=\"title\" src=\"https://image.tmdb.org/t/p/w92/qEczX5Rruux72XOHDeeLJEvmZkV.jpg\" />",
       poster_path      
+    poster_path = poster_for_path(@movie["poster_path"], "title", size:92, display_height: 52)
+    assert_equal "<img alt=\"title\" height=\"52\" src=\"https://image.tmdb.org/t/p/w92/qEczX5Rruux72XOHDeeLJEvmZkV.jpg\" />",
+      poster_path        
     poster_path = poster_for_path(nil, "title")
     assert_equal "<i class=\"fa fa-film fa-3x\"></i>", poster_path
     poster_path = poster_for_path("    ", "title")

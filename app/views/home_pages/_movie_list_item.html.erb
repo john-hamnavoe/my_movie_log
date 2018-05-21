@@ -1,0 +1,14 @@
+<li class="media">
+    <a href="#" class="pull-left">
+       <%= poster_for_path movie[:tmdb_poster_path], movie[:title], size:45, display_height: 45 %>
+    </a>
+    <div class="media-body">
+        <span class="text-muted pull-right">
+            <small class="text-muted"><%= movie.attributes["count_id"]%> watches</small>
+        </span>
+        <strong class="text-success"><%= movie[:title] %></strong>
+        <p>
+          <%= link_to "see details on imdb", "http://www.imdb.com/title/#{movie[:imdb_id]}/", target: '_blank' %>
+        </p>                                        
+    </div>
+</li>

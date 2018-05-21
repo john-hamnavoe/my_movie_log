@@ -7,13 +7,14 @@ module TmdbMoviesHelper
     poster_for_path(poster_path, movie['title'], options)
   end
 
-  def poster_for_path(poster_path, alt, options = { size: 45 })
+  def poster_for_path(poster_path, alt, options = { size: 45, display_height: nil })
     size = options[:size]
+    display_height = options[:display_height]
     poster_url = "https://image.tmdb.org/t/p/w#{size.to_s}#{poster_path}"
     if poster_path.blank?
       '<i class="fa fa-film fa-3x"></i>'.html_safe
     else
-      image_tag(poster_url, alt: alt)
+      image_tag(poster_url, alt: alt, height: display_height)
     end
   end
 

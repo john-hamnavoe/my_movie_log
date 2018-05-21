@@ -53,7 +53,7 @@ five:
 six:
   user: michael
   movie: movie_two
-  date: 2017-12-18
+  date: <%= Date.today %>
   rating: 1
   review: MyText
   location: one

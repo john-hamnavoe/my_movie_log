@@ -8,6 +8,8 @@ class Movie < ApplicationRecord
   validates :tmdb_id, uniqueness: { allow_nil: true }
   validates :imdb_id, uniqueness: { allow_nil: true }
 
+  has_many :watches 
+  
   self.per_page = 10
 
   def self.average_rating(id)

@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find_by(id: id)
     @average_rating = Movie.average_rating(id)
     @total_watches = Movie.total_watches(id)
-    @last_reviews = Movie.last_reviews(id, 2)
+    @last_reviews = Movie.last_reviews(id, 3)
     @watched_redirect = params[:watched].present?
   end
 

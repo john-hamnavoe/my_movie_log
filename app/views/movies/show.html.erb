@@ -8,41 +8,37 @@
 
 <br><br>
 <div class="container-fluid">
-  <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <%= poster_for_path @movie.tmdb_poster_path, @movie.title, size:300 %>
-          <div class="card-container">
-            <h4><b><%= "#{@movie.title} (#{@movie.year})" %></b></h4> 
-            <%= link_to "imdb", "http://www.imdb.com/title/#{@movie.imdb_id}/", target: '_blank' %>
+  <div class="row card">
+      <div class="col-lg-6">
+        <div>
+          <div align="center">
+            <%= poster_for_path @movie.tmdb_poster_path, @movie.title, size:400 %>
+  
+            <div class="card-container">
+              <h4><b><%= "#{@movie.title} (#{@movie.year})" %></b></h4> 
+              <%= link_to "imdb", "http://www.imdb.com/title/#{@movie.imdb_id}/", target: '_blank' %>
+            </div>
           </div>
         </div>    
       </div>
-      <div class="col-md-8">
-          <div class="row" style="height:140px">
-              <div class="card col-md-12" style="height:120px">
-                <h1>Average User Rating: <%= @average_rating %></h1>
-                <p>(Based on <%= @total_watches %> <%= people_text(@total_watches) %> watching this movie.)</p>
+      <div class="col-lg-6">
+          <div align="center">
+            <h1>Average User Rating: <%= @average_rating %></h1>
+            <p>(Based on <%= @total_watches %> <%= people_text(@total_watches) %> watching this movie.)</p>                
+            <h4>Last 3 Reviews</h4>
+            <% @last_reviews.each do |watch| %>
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <%= watch.date %>
+                </div>
+                <div class="panel-body">
+                  <p>
+          			    <%= watch.review %>
+          		    </p>                    
+                </div>
               </div>
-          </div>
-          <div class="row" >
-              <div class="card col-md-12" style="height:375px">
-                <h4>Last 2 Reviews</h4>
-                <% @last_reviews.each do |watch| %>
-                  <div class="panel panel-info">
-                    <div class="panel-heading">
-                      <%= watch.date %>
-                    </div>
-                    <div class="panel-body">
-                      <p>
-              			    <%= watch.review %>
-              		    </p>                    
-                    </div>
-                  </div>
-                <% end %>
-              </div>
+            <% end %>
+            </div>
           </div>
       </div>
   </div>  
-</div>
-

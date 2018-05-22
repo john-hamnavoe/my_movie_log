@@ -13,6 +13,9 @@ class HomePagesController < ApplicationController
   def about
   end
 
+  def privacy
+  end
+
 private
   
   def top_10_movies

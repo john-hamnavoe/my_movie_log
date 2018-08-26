@@ -7,6 +7,10 @@
   <div class="col-md-10 col-md-offset-1">
     <b>name:</b> <%= @subscription.name %> 
     <b>next due:</b> <%= @subscription.next_due_date %>
+    <br>
+    <b>total movies watched:</b> <%= @total_watches %>
+    <br>
+    <b>average price per watch:</b> <%= cost_per_movie(@total_subs, @total_watches) %>
   </div>
 </div>
 

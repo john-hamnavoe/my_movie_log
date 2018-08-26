@@ -10,6 +10,8 @@ class SubscriptionsController < ApplicationController
   def show
     find_subscription
     redirect_to subscriptions_path and return if @subscription.nil?
+    @total_watches = Watch.where(subscription_id: @subscription.id).count
+    @total_subs = SubscriptionPayment.where(subscription_id: @subscription.id).sum(:amount)
     @subscription_payments = SubscriptionPayment.where(
       subscription_id: @subscription.id).order(start_date: :desc).paginate(
         page: params[:page])

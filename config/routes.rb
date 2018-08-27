@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :tmdb_movies,         only: [:index, :show]
   resources :subscriptions,       except: [:destroy]
   resources :locations,           except: [:destroy, :show]
+  resources :subscription_payments, only: [:edit, :update]  
   resources :watches do
     get :friends, to: 'watches#friends'   
   end

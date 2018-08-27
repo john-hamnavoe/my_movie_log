@@ -1,4 +1,8 @@
 <tr>
+  <td>
+    <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, 
+      edit_subscription_payment_path(subscription_payment.id)%>
+  </td>   
   <td><%= subscription_payment.start_date %></td>
   <td  class="hidesmall"><%= subscription_payment.end_date %></td>
   <td  class="hidesmall"><%= subscription_payment.amount %></td>

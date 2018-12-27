@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :movies,              except: [:destroy]
+  resources :movies,              except: [:destroy] do
+    member do
+      patch :release, to: 'movies#release'
+    end
+  end
+  resources :movie_interests,      only: [:create, :destroy]
   post '/create_from_tmdb',       to: 'movies#create_from_tmdb'
   resources :tmdb_movies,         only: [:index, :show]
   resources :subscriptions,       except: [:destroy]
@@ -46,4 +51,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  
+  # upcoming movies
+  get 'upcoming_movies', to: 'upcoming_movies#index'
 end

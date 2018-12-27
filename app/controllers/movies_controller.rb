@@ -38,13 +38,18 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find_by(id: params[:id])
+    @upcoming = params[:upcoming]
   end
 
   def update
     @movie = Movie.find_by(id: params[:id])
     if @movie.update_attributes(movie_params)
       flash[:success] = 'movie updated'
-      redirect_to movies_path
+      if params[:movie][:upcoming] == "true" 
+        redirect_to upcoming_movies_path
+      else
+        redirect_to movies_path
+      end
     else
       render 'edit'
     end
@@ -58,10 +63,22 @@ class MoviesController < ApplicationController
     end
   end
 
+  def release
+    @movie = Movie.find_by(id: params[:id])
+    @movie.released = true
+    if @movie.save 
+      flash[:success] = 'movie release status updated'
+    else
+      flash[:danager] = @movie.errors.full_messages
+    end
+    redirect_to upcoming_movies_path
+  end
+
   private
 
     def movie_params
-      params.require(:movie).permit(:title, :year, :imdb_id, :tmdb_id, :tmdb_poster_path)
+      params.require(:movie).permit(:title, :year, :imdb_id, :tmdb_id, :tmdb_poster_path,
+        :released, :release_date)
     end
 
     def movie_service

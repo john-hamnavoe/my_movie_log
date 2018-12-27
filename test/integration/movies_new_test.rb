@@ -15,7 +15,7 @@ class MoviesNewTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-  test 'should create' do
+  test 'should create and by default set released to true' do
     log_in_as(users(:michael))
     assert_difference 'Movie.count', +1 do
       post movies_path, params: { movie: { title: @movie.title, 
@@ -26,6 +26,8 @@ class MoviesNewTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to movies_path
     assert_not flash.empty?
+    movie = Movie.find_by(tmdb_id: @movie.tmdb_id)
+    assert_equal true, movie.released
   end
   
   test 'should handle failure to create' do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422091345) do
+ActiveRecord::Schema.define(version: 20181117105431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,24 @@ ActiveRecord::Schema.define(version: 20180422091345) do
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
+  create_table "movie_favourites", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_movie_favourites_on_movie_id"
+    t.index ["user_id"], name: "index_movie_favourites_on_user_id"
+  end
+
+  create_table "movie_interests", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_movie_interests_on_movie_id"
+    t.index ["user_id"], name: "index_movie_interests_on_user_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.integer "tmdb_id"
@@ -61,6 +79,8 @@ ActiveRecord::Schema.define(version: 20180422091345) do
     t.string "tmdb_poster_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "released", default: true
+    t.date "release_date"
     t.index "lower((title)::text) gin_trgm_ops", name: "index_lower_title_on_movies", using: :gin
     t.index ["imdb_id"], name: "index_movies_on_imdb_id", unique: true
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id", unique: true
@@ -158,6 +178,10 @@ ActiveRecord::Schema.define(version: 20180422091345) do
   add_foreign_key "friend_requests", "users", column: "friend_id"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "movie_favourites", "movies"
+  add_foreign_key "movie_favourites", "users"
+  add_foreign_key "movie_interests", "movies"
+  add_foreign_key "movie_interests", "users"
   add_foreign_key "watch_likes", "users", column: "friend_id"
   add_foreign_key "watch_likes", "watches"
   add_foreign_key "watches", "subscription_payments"

@@ -5,16 +5,27 @@
 
   <%= f.label :year %>
   <%= f.text_field :year, class: 'form-control' %>
+  <%= f.label :released do %>
+    <span>Released</span>
+    <%= f.check_box :released %>
+   <% end %><br>
+  <%= f.label :release_date %>
+  <%= f.date_field :release_date, class: 'form-control' %>
+  
+
+        
   <%= f.hidden_field :tmdb_id %>
   <%= f.hidden_field :imdb_id %>
   <%= f.hidden_field :tmdb_poster_path %>
+  <%= f.hidden_field :upcoming, value: @upcoming %>
   
   <div class="row">    
     <div class="col-sm-6">
       <%= f.submit "save", class: "btn btn-primary" %>
     </div>
     <div class="col-sm-6">
-      <%= link_to "cancel", movies_path, method: :get, class: "btn btn-default form-control" %>
+      <%= link_to "cancel", if @upcoming then upcoming_movies_path else movies_path end, 
+        method: :get, class: "btn btn-default form-control" %>
     </div>
   </div>
 <% end %>

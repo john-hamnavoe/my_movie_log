@@ -1,0 +1,2 @@
+module UpcomingMoviesHelper
+end

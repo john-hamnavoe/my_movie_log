@@ -12,6 +12,7 @@
     <div class="collapse navbar-collapse" id="collapsibleMenu">
       <ul class="nav navbar-nav">
         <li><%= link_to "movies", movies_path %></li>
+        <li><%= link_to "upcoming", upcoming_movies_path %></li>
         <li><%= link_to "locations", locations_path %></li>
         <% if logged_in? %>
           <li><%= link_to "watched", watches_path %></li>

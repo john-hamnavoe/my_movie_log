@@ -17,3 +17,8 @@ movie_two:
 movie_three:
   title: My Movie 3
   year: 2001
+
+movie_four:
+  title: My Movie 4
+  year: 2021
+  released: false

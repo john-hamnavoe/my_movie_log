@@ -1,0 +1,38 @@
+<% movies.each do |movie| %>
+  <div class="col-sm-6">
+    <li class="list-group-item clearfix">
+        <div class="row">
+      	<div class="col-sm-2">
+      	   <%= poster_for_path movie.tmdb_poster_path, movie.title %>
+      	</div>
+        <div class="col-sm-10">
+          <h4><%= link_to movie.title, movie %></h4>
+          <p><%= "#{movie.release_date}" %></p>
+          <hr style="margin-bottom: 0.5em;">
+          <span class="pull-left">
+            <% if logged_in? %>
+              <div class="row">
+                <div  class="col-sm-2">
+                  <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_movie_path(movie.id, params: {upcoming: true})%>
+                </div>
+                <div class="col-sm-2" id="interested_state_<%= movie.id %>">
+              	  <% if movie_interest = @movie_interests.detect { |mi| mi.movie_id == movie.id } %>
+          	        <%= render 'interested', movie_interest: movie_interest %>
+              	  <% else %>
+                    <%= render 'not_interested', movie_id: movie.id %>
+              	  <% end %>
+      	        </div>
+  
+                <div  class="col-sm-2">
+                  <%= link_to "<button type=\"button\"><i class=\"fa fa-check\"></i></button>".html_safe, release_movie_path(id: movie.id), method: :patch%>
+                </div>
+                <div  class="col-sm-2">
+      	        </div>
+              </div>
+            <% end %>
+          </span>
+        </div>   
+        </div>
+    </li>
+  </div>
+<% end %>

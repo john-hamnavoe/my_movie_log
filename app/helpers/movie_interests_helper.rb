@@ -1,0 +1,2 @@
+module MovieInterestsHelper
+end

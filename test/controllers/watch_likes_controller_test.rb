@@ -8,7 +8,7 @@ class WatchLikesControllerTest < ActionDispatch::IntegrationTest
   
   test "should not create if not logged in" do
     assert_no_difference "WatchLike.count" do
-      post friend_requests_path, params: { watch_id: @watch.id }
+      post watch_likes_path, params: { watch_id: @watch.id }
     end
     assert_redirected_to login_path
   end

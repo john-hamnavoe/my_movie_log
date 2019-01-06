@@ -1,7 +1,7 @@
 desc "This task runs daily to create subscription payments required."
-task :subscription_payment_run => :environment do
-  puts "Running payments..."
-  s = SubscriptionPaymentRunService.new
-  s.perform
-  puts "done. Created #{s.subscription_payments.count} payments."
+task :movie_interest_notification => :environment do
+  puts "Running notifications..."
+  m = MovieInterestNotificationService.new
+  m.perform
+  puts "done. Created #{m.notifications_due.count} notifications."
 end

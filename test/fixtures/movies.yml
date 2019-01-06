@@ -6,6 +6,7 @@ movie_one:
   year: 1975
   imdb_id: ttimdb1
   tmdb_poster_path: poster1.jpg
+  release_date: 01/01/2019
 
 movie_two:
   title: My Movie 2

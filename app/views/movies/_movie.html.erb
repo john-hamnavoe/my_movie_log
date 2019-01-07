@@ -10,8 +10,15 @@
         <hr style="margin-bottom: 0.5em;">
         <span class="pull-left">
           <% if logged_in? %>
-            <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_movie_path(movie.id)%>
-            <%= link_to "<button type=\"button\"><i class=\"fa fa-eye\"></i></button>".html_safe, new_watch_path(movie_id: movie.id)%>
+            <div class="row">
+              <div  class="col-xs-3">
+                <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_movie_path(movie.id)%>
+              </div>
+              <div  class="col-xs-3">
+                <%= link_to "<button type=\"button\"><i class=\"fa fa-eye\"></i></button>".html_safe, new_watch_path(movie_id: movie.id)%>
+              </div>
+              <div  class="col-xs-3">
+              </div>
           <% end %>
         </span>
       </div>   

@@ -1,0 +1,19 @@
+<% provide(:title, 'subscription payment watches') %>
+
+<%= link_to "back to subscription", subscription_path(@subscription_payment.subscription_id) %>
+
+<h4><small>watches</small></h4>
+<div class="row">
+  <div class="col-sm-6">
+  <table>
+    <tr>
+      <th>title</th>
+      <th>rating</th> 
+      <th>date</th>
+    </tr>
+    <% @subscription_payment_watches.each do |spw| %>
+      <%= render 'subscription_payment_watch', watch: spw %>
+    <% end %>
+  </table>
+  </div>
+</div>

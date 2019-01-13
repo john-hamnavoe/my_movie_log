@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'subscription_payment_watches/index'
+
   root 'home_pages#home'
 
   # home
@@ -25,7 +27,9 @@ Rails.application.routes.draw do
   resources :tmdb_movies,         only: [:index, :show]
   resources :subscriptions,       except: [:destroy]
   resources :locations,           except: [:destroy, :show]
-  resources :subscription_payments, only: [:edit, :update]  
+  resources :subscription_payments, only: [:edit, :update]  do
+    resources :watches, only: [:index], to: 'subscription_payment_watches#index'
+  end
   resources :watches do
     get :friends, to: 'watches#friends'   
   end

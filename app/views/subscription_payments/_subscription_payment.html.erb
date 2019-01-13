@@ -6,6 +6,6 @@
   <td><%= subscription_payment.start_date %></td>
   <td  class="hidesmall"><%= subscription_payment.end_date %></td>
   <td  class="hidesmall"><%= subscription_payment.amount %></td>
-  <td><%= subscription_payment.watches_count %></td>
+  <td><%= link_to subscription_payment.watches_count || 0, subscription_payment_watches_path(subscription_payment_id: subscription_payment.id) %></td>
   <td><%= cost_per_movie(subscription_payment.amount, subscription_payment.watches_count) %></td>
 </tr>

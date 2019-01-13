@@ -5,6 +5,8 @@
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :amount %>
       <%= f.number_field :amount, in: 0.0..10000.0, step: 0.01, class: 'form-control' %>
+      <%= f.label :full_price_amount %>
+      <%= f.number_field :full_price_amount, in: 0.0..10000.0, step: 0.01, class: 'form-control' %>
       
       <div class="row">    
         <div class="col-sm-6">

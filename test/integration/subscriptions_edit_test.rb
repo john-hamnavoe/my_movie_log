@@ -19,10 +19,11 @@ class SubscriptionsEditTest < ActionDispatch::IntegrationTest
   test "should update with login" do
     name = "this is new name"
     amount = 17.80
+    full_price_amount = 11.13
     log_in_as(@user_michael)
     assert_no_difference 'Subscription.count' do
       patch subscription_path(@subscription), params: { subscription: { name: name, 
-        start_date: @subscription.start_date, amount: amount, 
+        start_date: @subscription.start_date, amount: amount, full_price_amount: full_price_amount,
         subscription_period_id: @subscription.subscription_period_id } }
     end
     assert_not flash.empty?
@@ -30,15 +31,17 @@ class SubscriptionsEditTest < ActionDispatch::IntegrationTest
     @subscription.reload
     assert_equal name, @subscription.name
     assert_equal amount, @subscription.amount
+    assert_equal full_price_amount, @subscription.full_price_amount
   end  
   
   test "should not update with login and invalid details" do
     name = "      "
     amount = -17.80
+    full_price_amount = 11.13
     log_in_as(@user_michael)
     assert_no_difference 'Subscription.count' do
       patch subscription_path(@subscription), params: { subscription: { name: name, 
-        start_date: @subscription.start_date, amount: amount, 
+        start_date: @subscription.start_date, amount: amount, full_price_amount: full_price_amount, 
         subscription_period_id: @subscription.subscription_period_id } }
     end
     assert_template 'subscriptions/edit'
@@ -46,11 +49,13 @@ class SubscriptionsEditTest < ActionDispatch::IntegrationTest
     @subscription.reload
     assert_not_equal name, @subscription.name
     assert_not_equal amount, @subscription.amount
+    assert_not_equal full_price_amount, @subscription.full_price_amount
   end    
   
   test "should not update with wrong login" do
     name = "this is new name"
     amount = 17.80
+    full_price_amount = 11.13
     log_in_as(@user_archer)
     assert_no_difference 'Subscription.count' do
       patch subscription_path(@subscription), params: { subscription: { name: name, 
@@ -61,6 +66,7 @@ class SubscriptionsEditTest < ActionDispatch::IntegrationTest
     @subscription.reload
     assert_not_equal name, @subscription.name
     assert_not_equal amount, @subscription.amount
+    assert_not_equal full_price_amount, @subscription.full_price_amount    
     assert flash.empty?
   end   
 end

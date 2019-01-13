@@ -10,6 +10,12 @@
     <br>
     <b>total movies watched:</b> <%= @total_watches %>
     <br>
+    <b>total cost:</b> <%= @total_subs %>
+    <br>
+    <b>total full price:</b> <%= @total_full_price %>
+    <br>
+    <b>total savings:</b> <%= @total_full_price - @total_subs %>
+    <br>       
     <b>average price per watch:</b> <%= cost_per_movie(@total_subs, @total_watches) %>
   </div>
 </div>
@@ -25,6 +31,8 @@
         <th class="hidesmall">amount</th>
         <th>watched</th>
         <th>average price</th>
+        <th class="hidesmall">full price</th>
+        <th>savings</th>
       </tr>
       <%= render @subscription_payments %>
     </table>

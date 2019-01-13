@@ -9,6 +9,7 @@ one:
   end_date: 2018-02-15
   payment_type: one
   reference: subone
+  full_price_amount: 11.70
 
 two:
   name: A MyString 2

@@ -27,6 +27,6 @@ class SubscriptionPaymentsController < ApplicationController
     end
 
     def subscription_payment_params
-      params.require(:subscription_payment).permit(:amount)
+      params.require(:subscription_payment).permit(:amount, :full_price_amount)
     end
 end

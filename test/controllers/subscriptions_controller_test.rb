@@ -47,7 +47,9 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     total_watches = assigns(:total_watches)
     assert_not total_watches.nil?   
     total_subs = assigns(:total_subs)
-    assert_not total_subs.nil?         
+    assert_not total_subs.nil?   
+    total_full_price = assigns(:total_full_price)
+    assert_not total_full_price.nil?      
   end
 
   test "show redirect if invalid request" do

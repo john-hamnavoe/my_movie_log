@@ -8,7 +8,10 @@
   
   <%= f.label :amount %>
   <%= f.number_field :amount, in: 0.0..10000.0, step: 0.01, class: 'form-control' %>
-  
+ 
+  <%= f.label :full_price_amount %>
+  <%= f.number_field :full_price_amount, in: 0.0..10000.0, step: 0.01, class: 'form-control' %>  
+ 
   <%= f.label :subscription_period_id %>
   <%= collection_select(:subscription, :subscription_period_id, 
     LookUpService.lookup_values(:subscription_periods), :id, :name, {include_blank: true}, 

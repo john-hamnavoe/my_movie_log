@@ -12,6 +12,7 @@ class SubscriptionsController < ApplicationController
     redirect_to subscriptions_path and return if @subscription.nil?
     @total_watches = Watch.where(subscription_id: @subscription.id).count
     @total_subs = SubscriptionPayment.where(subscription_id: @subscription.id).sum(:amount)
+    @total_full_price = SubscriptionPayment.where(subscription_id: @subscription.id).sum('full_price_amount * watches_count')
     @subscription_payments = SubscriptionPayment.where(
       subscription_id: @subscription.id).order(start_date: :desc).paginate(
         page: params[:page])
@@ -53,7 +54,7 @@ class SubscriptionsController < ApplicationController
 
     def subscription_params
       params.require(:subscription).permit(:name, :amount, :start_date, :end_date,
-        :reference, :subscription_period_id, :payment_type_id)
+        :reference, :subscription_period_id, :payment_type_id, :full_price_amount)
     end
 
     def find_subscription

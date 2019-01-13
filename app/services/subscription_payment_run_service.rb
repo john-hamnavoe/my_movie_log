@@ -26,7 +26,7 @@ class SubscriptionPaymentRunService
         sub.next_due_date = NextDueDateUtil.next_due_date(
           current_date, sub.start_date, sub.subscription_period.months)
         subscription_payment = SubscriptionPayment.new(subscription_id: sub.id,
-          amount: sub.amount, start_date: current_date,
+          amount: sub.amount, full_price_amount: sub.full_price_amount, start_date: current_date,
           end_date: sub.next_due_date.advance(days: -1))
         @subscription_payments.push(subscription_payment)
       end

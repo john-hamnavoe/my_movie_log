@@ -8,7 +8,7 @@
     <b>name:</b> <%= @subscription.name %> 
     <b>next due:</b> <%= @subscription.next_due_date %>
     <br>
-    <b>total movies watched:</b> <%= @total_watches %>
+    <b>total movies watched:</b> <%= link_to @total_watches, subscription_watches_path(subscription_id: @subscription.id) %>
     <br>
     <b>total cost:</b> <%= @total_subs %>
     <br>

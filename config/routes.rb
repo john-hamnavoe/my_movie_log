@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   resources :movie_interests,      only: [:create, :destroy]
   post '/create_from_tmdb',       to: 'movies#create_from_tmdb'
   resources :tmdb_movies,         only: [:index, :show]
-  resources :subscriptions,       except: [:destroy]
+  resources :subscriptions,       except: [:destroy]  do
+    resources :watches, only: [:index], to: 'subscription_watches#index'
+  end
   resources :locations,           except: [:destroy, :show]
   resources :subscription_payments, only: [:edit, :update]  do
     resources :watches, only: [:index], to: 'subscription_payment_watches#index'

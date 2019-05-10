@@ -16,12 +16,15 @@ class SubscriptionPaymentRunServiceTest < ActionView::TestCase
   end
   
   test "create annual subscription_payment" do
+    subscriptions_due = Subscription.subscriptions_due.count     
     subscription_anual_due = Subscription.new(name: "unlimited", start_date: '1/1/2018',
       amount: 79.00, subscription_period_id: subscription_periods(:two).id, 
       user_id: users(:michael).id, full_price_amount: 11.14)     
     subscription_anual_due.save!
+    assert_equal subscriptions_due + 1, Subscription.subscriptions_due.count 
+    subscriptions_due = Subscription.subscriptions_due.count     
     s = SubscriptionPaymentRunService.new
-    assert_difference 'SubscriptionPayment.count', +1 do
+    assert_difference 'SubscriptionPayment.count', +subscriptions_due do
       s.perform
     end
     subscription_anual_due.reload
@@ -34,12 +37,14 @@ class SubscriptionPaymentRunServiceTest < ActionView::TestCase
   end  
   
   test "do not create payment not due" do
+    subscriptions_due = Subscription.subscriptions_due.count    
     subscription_monthly_due = Subscription.new(name: "unlimited", start_date: (Date::today).advance(months: -1),
       amount: 17.90, subscription_period_id: subscription_periods(:one).id, 
       user_id: users(:michael).id, next_due_date: (Date::today).advance(days: 1), full_price_amount: 11.70)     
     subscription_monthly_due.save!
+    assert_equal subscriptions_due, Subscription.subscriptions_due.count 
     s = SubscriptionPaymentRunService.new
-    assert_no_difference 'SubscriptionPayment.count' do
+    assert_difference 'SubscriptionPayment.count', +subscriptions_due do
       s.perform
     end
     subscription_monthly_due.reload
@@ -47,12 +52,15 @@ class SubscriptionPaymentRunServiceTest < ActionView::TestCase
   end 
   
   test "create payment due today" do
+    subscriptions_due = Subscription.subscriptions_due.count 
     subscription_monthly_due = Subscription.new(name: "unlimited", start_date: (Date::today).advance(months: -1),
       amount: 19.98, subscription_period_id: subscription_periods(:one).id, 
       user_id: users(:michael).id, next_due_date: (Date::today), full_price_amount: 11.54)     
     subscription_monthly_due.save!
+    assert_equal subscriptions_due + 1, Subscription.subscriptions_due.count 
+    subscriptions_due = Subscription.subscriptions_due.count    
     s = SubscriptionPaymentRunService.new
-    assert_difference 'SubscriptionPayment.count', +1 do
+    assert_difference 'SubscriptionPayment.count', +subscriptions_due do
       s.perform
     end
     subscription_monthly_due.reload
@@ -64,12 +72,15 @@ class SubscriptionPaymentRunServiceTest < ActionView::TestCase
   
   private 
     def create_monthly_subscription_payment_success(end_date, message)
+      subscriptions_due = Subscription.subscriptions_due.count 
       subscription_monthly_due = Subscription.new(name: "unlimited", start_date: '1/1/2018',
         amount: 17.90, subscription_period_id: subscription_periods(:one).id, 
         user_id: users(:michael).id, end_date: end_date, full_price_amount: 11.70)     
       subscription_monthly_due.save!
+      assert_equal subscriptions_due + 1, Subscription.subscriptions_due.count 
+      subscriptions_due = Subscription.subscriptions_due.count
       s = SubscriptionPaymentRunService.new
-      assert_difference 'SubscriptionPayment.count', +1, message do
+      assert_difference 'SubscriptionPayment.count', +subscriptions_due, message do
         s.perform
       end
       subscription_monthly_due.reload

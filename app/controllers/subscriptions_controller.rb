@@ -13,6 +13,7 @@ class SubscriptionsController < ApplicationController
     @total_watches = Watch.where(subscription_id: @subscription.id).count
     @total_subs = SubscriptionPayment.where(subscription_id: @subscription.id).sum(:amount)
     @total_full_price = SubscriptionPayment.where(subscription_id: @subscription.id).sum('full_price_amount * watches_count')
+    @watch_by_years = Watch.where(subscription_id: @subscription.id).group_by_year(:date).count
     @subscription_payments = SubscriptionPayment.where(
       subscription_id: @subscription.id).order(start_date: :desc).paginate(
         page: params[:page])

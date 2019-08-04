@@ -4,33 +4,31 @@
 <div class="row">
   <div class="col-md-6">
     <h4><small>subscription</small></h4>
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1">
+        <b>name:</b> <%= @subscription.name %> 
+        <b>next due:</b> <%= @subscription.next_due_date %>
+        <br>
+        <b>total movies watched:</b> <%= link_to @total_watches, subscription_watches_path(subscription_id: @subscription.id) %>
+        <br>
+        <b>total cost:</b> <%= @total_subs %>
+        <br>
+        <b>total full price:</b> <%= @total_full_price %>
+        <br>
+        <b>total savings:</b> <%= @total_full_price - @total_subs %>
+        <br>       
+        <b>average price per watch:</b> <%= cost_per_movie(@total_subs, @total_watches) %>
+      </div>
+    </div>
   </div>
   <div class="col-md-6">
     <h4><small>watches by year</small></h4>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-5 col-md-offset-1">
-    <b>name:</b> <%= @subscription.name %> 
-    <b>next due:</b> <%= @subscription.next_due_date %>
-    <br>
-    <b>total movies watched:</b> <%= link_to @total_watches, subscription_watches_path(subscription_id: @subscription.id) %>
-    <br>
-    <b>total cost:</b> <%= @total_subs %>
-    <br>
-    <b>total full price:</b> <%= @total_full_price %>
-    <br>
-    <b>total savings:</b> <%= @total_full_price - @total_subs %>
-    <br>       
-    <b>average price per watch:</b> <%= cost_per_movie(@total_subs, @total_watches) %>
-  </div>
-  <div class="col-md-3">
-    <table>
+    <div class="col-md-3">
       <% @watch_by_years.each do |watch_year, watch_count| %>
         <%= render 'year_table_row', watch_year: watch_year, watch_count: watch_count %>
       <% end %>      
-    </table>
-  </div>  
+    </div>  
+  </div>
 </div>
 
 <h4><small>payments</small></h4>

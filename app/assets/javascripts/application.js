@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require Chart.bundle
 //= require chartkick
-//= require_tree .
 //= require bootstrap/js/dist/util
 //= require bootstrap/js/dist/collapse
 //= require bootstrap/js/dist/tab

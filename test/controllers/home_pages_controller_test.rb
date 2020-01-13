@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HomePagesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @base_title = "my movie log" 
+    @base_title = "viewlog.me" 
   end
   
   test "should get home" do

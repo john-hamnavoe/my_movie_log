@@ -2,5 +2,6 @@
 <% @watches.each do |friend_watch| %>
   <%= render 'friend_watch', friend_watch: friend_watch %>
 <% end %>
-
+<div class="digg_pagination">
 <%= will_paginate @watches %>
+</div>

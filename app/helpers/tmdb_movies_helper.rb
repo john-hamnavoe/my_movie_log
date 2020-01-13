@@ -19,6 +19,16 @@ module TmdbMoviesHelper
       image_tag(poster_url, alt: alt, height: display_height, class: display_class)
     end
   end
+  
+  def background_for_path(background_path, alt, options = { version: "original" })
+    version = options[:version]
+    background_url = "https://image.tmdb.org/t/p/#{version.to_s}#{background_path}"
+    if background_path.blank?
+      '<i class="fa fa-film fa-3x"></i>'.html_safe
+    else
+      image_tag(background_url, alt: alt)
+    end
+  end
 
   def year_for_movie(movie)
     begin

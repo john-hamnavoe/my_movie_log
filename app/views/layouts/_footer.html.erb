@@ -1,15 +1,10 @@
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-      <p>my movie log by hamnavoe software</p>
-      </div>
-      <div class="col-md-8 list">
-        <ul>
-          <li><%= link_to 'about', about_path %></li>
-          <li><%= link_to 'privacy policy', privacy_path %></li>
-          <li><%= link_to 'contact', contact_path %></li>
-        </ul>
-
-      </div>
-</footer>
+<div class="page-footer bg-dark">
+  <p>Copyright &copy; <%= Date.today.year %> Hamnavoe Partners — All rights reserved.</p>
+  <ul id="horizontal-list">
+    <li><%= link_to 'about', about_path %></li>
+    <li>/</li>
+    <li><%= link_to 'privacy policy', privacy_path %></li>
+    <li>/</li>
+    <li><%= link_to 'contact', contact_path %></li>
+  </ul>
+</div>

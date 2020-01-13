@@ -1,5 +1,12 @@
 <tr>
-  <td><%= watch.movie.title %></td>     
+  <td><%= poster_for_path(watch.movie.tmdb_poster_path, watch.movie.title, options = { size:154, class:"poster-table" }) %></td>
+  
+  
+  <td>
+    <%= link_to watch.movie do %>
+      <strong><%= watch.movie.title %></strong><br /><small class="text-muted hidden-xs"><%= watch.movie.tagline%></small>
+    <% end %>
+  </td>     
   <td><%= watch.rating %></td>
   <td><%= watch.date %></td>
 </tr>

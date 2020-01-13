@@ -2,17 +2,14 @@
 <%= form_for(@watch) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :movie_id %>
-   <div class="row">    
-    <div class="col-sm-6">  
-      <%= f.label :date %>
-      <%= f.date_field :date, autofocus: true %>
-    </div>
-    <div class="col-sm-6">  
+          <%= f.label :date %>
+      <div class="input-group">
+        <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+        <%= f.date_field :date, autofocus: true %>
+      </div>
       <%= f.label :rating %>
       <%= f.number_field :rating, in: 0..5, step: 1, class: 'form-control' %>
-    </div>
-  </div>
- 
+
   <%= f.label :paid %>
   <%= f.number_field :paid, in: 0.0..10000.0, step: 0.01, class: 'form-control' %>
   
@@ -29,12 +26,8 @@
   <%= f.label :review %>
   <%= f.text_area :review, class: 'form-control' %>
   
-  <div class="row">    
-    <div class="col-sm-6">
-      <%= f.submit "save", class: "btn btn-primary" %>
-    </div>
-    <div class="col-sm-6">
-      <%= link_to "cancel", watches_path, method: :get, class: "btn btn-default form-control" %>
-    </div>
-  </div>
+   <div class="input-group">
+     <%= f.submit "save", class: "btn btn-primary" %>
+     <%= link_to "cancel", watches_path, method: :get, class: "btn btn-default form-control" %>
+  </div>     
 <% end %>

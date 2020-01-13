@@ -1,0 +1,58 @@
+<% provide(:title, 'home') %>
+<% if logged_in? %>
+  <div class="center jumbotron">
+    <h1 align="center">welcome to my movie log</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+              top 10 most watched movies - all time
+          </div>
+          <div class="panel-body">
+            <ul class="media-list">
+              <% @top_10_movies.each do |movie| %>
+                <%= render 'movie_list_item', movie: movie %>
+              <% end %>
+            </ul>
+            <span class="text-danger"><%= @users_count %> users</span>
+          </div>
+        </div>
+      </div>       
+    </div>
+    <div class="col-lg-6">
+      <div>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+              top 10 most watched movies - in the last month
+          </div>
+          <div class="panel-body">
+            <ul class="media-list">
+              <% @top_10_movies_last_month.each do |movie| %>
+                <%= render 'movie_list_item', movie: movie %>
+              <% end %>
+            </ul>
+            <span class="text-danger"><%= @users_count %> users</span>
+          </div>
+        </div>
+      </div>        
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <h1>welcome to my movie log</h1>
+
+    <h2>
+      This is the home page for the my movie log application.
+    </h2>
+
+    <h3>
+      Where you can log the movies you watch, the subscriptions you pay and keep track to see if you are getting value for money!
+    </h3>
+    
+    <br>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to " or log in here.", login_path %>
+  </div>
+<% end %>

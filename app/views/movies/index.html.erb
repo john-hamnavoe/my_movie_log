@@ -1,31 +1,52 @@
 <% provide(:title, 'movies') %>
-<div class="row">
-  <div class="col-sm-9">
-    <%= form_for :movies, method: :get do |f| %>
-      <div class="input-group input-group-lg">
-        <%= label_tag :keywords, nil, class: "sr-only" %>
-        <%= text_field_tag :keywords, @keywords, 
-              placeholder: "Movie Title", 
-              class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "find movies", class: "btn btn-primary btn-lg" %>
-        </span>
+<div class="container">
+  <div class="media-list my-5">
+    <div class="row">
+      <div class="col-sm-9">
+        <%= form_for :movies, method: :get do |f| %>
+          <div class="input-group input-group-lg">
+            <%= label_tag :keywords, nil, class: "sr-only" %>
+            <%= text_field_tag :keywords, @keywords, 
+                  placeholder: "Movie Title", 
+                  class: "form-control input-lg" %>
+            <span class="input-group-btn">
+              <%= submit_tag "find movies", class: "btn btn-primary btn-lg" %>
+            </span>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+      <div class="col-sm-3">
+        <% if logged_in? %>
+          <br>
+          <%= link_to "add new movie", tmdb_movies_path(keywords: @keywords) %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-3">
-    <% if logged_in? %>
-      <br>
-      <%= link_to "add new movie", tmdb_movies_path(keywords: @keywords) %>
-    <% end %>
+  
+  <div class="media-list my-5">
+    <hr>
+      <% @movies.each do |movie| %>
+        <div class="card media-card my-3">
+          <div class="media-poster"><%= poster_for_path movie.tmdb_poster_path, movie.title, size: 500, class: "card-img rounded-0"  %></div>
+          <div class="card-body">
+            <% if logged_in? %>
+              <%= link_to new_watch_path(movie_id: movie.id), class: "rounded-pill ml-auto media-rating" do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+            <% end %>            
+            <h5 class="card-title"><%= link_to movie.title, movie %></h5>
+            <h6 class="card-subtitle mb-2"><%= movie.tagline %></h6>
+            <p class="card-text"><%= truncate(movie.overview, length: 200) %></p>
+
+          </div>
+  
+        </div>  
+       <% end %>      
+  </div>
+  
+  <div class="digg_pagination">
+  <%= will_paginate @movies %>
   </div>
 </div>
-
-<div class="row">
-  <hr>
-  <ol class="list-group">
-    <%= render @movies %>
-  </ol>
 </div>
-
-<%= will_paginate @movies %>

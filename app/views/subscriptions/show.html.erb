@@ -1,56 +1,64 @@
 <% provide(:title, 'subscription') %>
 
+<!--Photo by Skitterphoto from Pexels-->
 <%= link_to "back to subscriptions", subscriptions_path %>
-<div class="row">
-  <div class="col-md-6">
-    <h4><small>subscription</small></h4>
-    <div class="row">
-      <div class="col-md-7 col-md-offset-1">
-        <b>name:</b> <%= @subscription.name %> 
-        <b>next due:</b> <%= @subscription.next_due_date %>
-        <br>
-        <b>total movies watched:</b> <%= link_to @total_watches, subscription_watches_path(subscription_id: @subscription.id) %>
-        <br>
-        <b>total cost:</b> <%= @total_subs %>
-        <br>
-        <b>total full price:</b> <%= @total_full_price %>
-        <br>
-        <b>total savings:</b> <%= @total_full_price - @total_subs %>
-        <br>       
-        <b>average price per watch:</b> <%= cost_per_movie(@total_subs, @total_watches) %>
+<div class="media-banner">
+  <figure class="backdrop">
+    <%= image_tag("watch_background.jpg") %>
+  </figure>
+
+  <div class="container">
+    <div class="row my-4">
+
+      <div class="col-md-9">
+        <div class="media-info">
+            <b>name:</b> <%= @subscription.name %> 
+            <br>
+            <b>next due:</b> <%= @subscription.next_due_date %>
+            <br>
+            <b>total movies watched:</b> <%= link_to @total_watches, subscription_watches_path(subscription_id: @subscription.id) %>
+            <br>
+            <b>total cost:</b> <%= @total_subs %>
+            <br>
+            <b>total full price:</b> <%= @total_full_price %>
+            <br>
+            <b>total savings:</b> <%= @total_full_price - @total_subs %>
+            <br>       
+            <b>average price per watch:</b> <%= cost_per_movie(@total_subs, @total_watches) %>
+        </div>      
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <h4><small>watches by year</small></h4>
-    <div class="col-md-3">
+</div>
+<div class="container my-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><%= link_to "Payments", "#payment", class: "nav-link active", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Watches Per Year ", "#watches", class: "nav-link", data: { toggle: "tab" } %></li>
+  </ul>
+  
+   <div class="tab-content">
+    <div class="tab-pane fade show active" role="tabpanel" id="payment"> 
+      <table class="table">
+          <tr>
+            <th></th>
+            <th>start date</th>
+            <th class="hidesmall">end date</th> 
+            <th class="hidesmall">amount</th>
+            <th>watched</th>
+            <th>average price</th>
+            <th class="hidesmall">full price</th>
+            <th>savings</th>
+          </tr>
+          <%= render @subscription_payments %>
+        </table>
+        <div class="digg_pagination">
+        <%= will_paginate @subscription_payments %>
+        </div>
+    </div>
+    <div class="tab-pane fade" role="tabpanel" id="watches">
       <% @watch_by_years.each do |watch_year, watch_count| %>
         <%= render 'year_table_row', watch_year: watch_year, watch_count: watch_count %>
-      <% end %>      
-    </div>  
-  </div>
-</div>
-
-<h4><small>payments</small></h4>
-<div class="row">
-  <div class="col-md-9 col-md-offset-1">
-    <table>
-      <tr>
-        <th></th>
-        <th>start date</th>
-        <th class="hidesmall">end date</th> 
-        <th class="hidesmall">amount</th>
-        <th>watched</th>
-        <th>average price</th>
-        <th class="hidesmall">full price</th>
-        <th>savings</th>
-      </tr>
-      <%= render @subscription_payments %>
-    </table>
-  </div>
-</div>
-<div class="row">
-    <div class="col-md-5 col-md-offset-2">
-      <%= will_paginate @subscription_payments %>
+      <% end %>  
     </div>
+  </div>
 </div>

@@ -1,4 +1,6 @@
 <% provide(:title, 'movies watched') %>
+<div class="container">
+  <div class="media-list my-5">
 <% last_month = 0 %>
 <% last_year = 0 %>
 <% group_started = false %>
@@ -31,10 +33,10 @@
           <%= "rating: #{watch.rating}" %></p>
           <hr style="margin-bottom: 0.5em;">
           <span class="pull-left">
-            <%= link_to "<button type=\"button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_watch_path(watch.id)%>
+            <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_watch_path(watch.id)%>
           </span>
           <span class="pull-right">
-            <%= link_to "<button type=\"button\"><i class=\"fa fa-trash\"></i></button>".html_safe,
+            <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-trash\"></i></button>".html_safe,
               watch_path(watch.id), method: :delete, data: { confirm: "You sure?" } %>
           </span>          
         </div>   
@@ -47,6 +49,9 @@
   </ol>
 <% end %>  
 
+<div class="digg_pagination">
 <%= will_paginate @watches %>
-
+</div>
 <div id="friendsModalWindow"></div>
+</div>
+</div>

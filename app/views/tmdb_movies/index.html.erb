@@ -1,6 +1,6 @@
 <% provide(:title, 'select movie') %>
-<div class="row">
-<div class="col-sm-9">
+<div class="container">
+  <div class="media-list my-5">
   <%= form_for :tmdb_movies, method: :get do |f| %>
     <div class="input-group input-group-lg">
       <%= label_tag :keywords, nil, class: "sr-only" %>
@@ -13,29 +13,24 @@
     </div>
   <% end %>
 </div>
-<div class="col-sm-2">
-<%= link_to "skip - add manually", new_movie_path %>
-</div>
-</div>
-<ul class="basic">
-<% @tmdb_movies.each do |tmdb_movie| %>
-  <li>
-    <div class="col-sm-4">
-    <%= poster_for_movie tmdb_movie %>
-    <%= link_to tmdb_movie["title"], tmdb_movie_path(tmdb_movie["id"]) %>
-    </div>
-    <div class="col-sm-2">
-      <br>
-      <%= link_to "<button type=\"button\"><i class=\"fa fa-plus-square\"></i> add this movie</button>".html_safe,
-        create_from_tmdb_path(tmdb_id: tmdb_movie["id"]), method: :post %>
-    </div>    
-    <div class="col-sm-3">
-      <br>
-      <%= link_to "<button type=\"button\"><i class=\"fa fa-plus\"></i> review and add movie</button>".html_safe,
-        new_movie_path( tmdb_id: tmdb_movie["id"] ) %>
-    </div>
-  </li>
-<% end %>
-</ul>
 
-<%= will_paginate @tmdb_movies %>
+<div class="media-list my-5">
+  <hr>
+    <% @tmdb_movies.each do |movie| %>
+      <div class="card media-card my-3">
+        <div class="media-poster"><%= poster_for_movie movie, size:500, class: "card-img rounded-0"  %></div>
+        <div class="card-body">
+          <h4 class="card-title title"><%= movie['title'] %></h4>
+          <h6 class="card-subtitle mb-2"><%= movie['release_date'] %></h6>
+          <%= link_to "<button type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-plus-square\"></i> add this movie</button>".html_safe,
+            create_from_tmdb_path(tmdb_id: movie["id"]), method: :post %>
+        </div>
+
+      </div>  
+     <% end %>      
+</div>
+  
+<div class="digg_pagination">
+  <%= will_paginate @tmdb_movies %>
+</div>
+</div>

@@ -73,6 +73,6 @@ class MoviesNewTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Movie.count' do
       post create_from_tmdb_path, params: { tmdb_id: @liberty_valance_id }
     end   
-    assert_template 'movies/new'
+    assert_redirected_to movies_path
   end  
 end

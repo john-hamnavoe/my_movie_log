@@ -1,58 +1,29 @@
-<% provide(:title, 'home') %>
-<% if logged_in? %>
-  <div class="center jumbotron">
-    <h1 align="center">welcome to my movie log</h1>
-  </div>
-  <div class="row">
-    <div class="col-lg-6">
-      <div>
-        <div class="panel panel-info">
-          <div class="panel-heading">
-              top 10 most watched movies - all time
-          </div>
-          <div class="panel-body">
-            <ul class="media-list">
-              <% @top_10_movies.each do |movie| %>
-                <%= render 'movie_list_item', movie: movie %>
-              <% end %>
-            </ul>
-            <span class="text-danger"><%= @users_count %> users</span>
-          </div>
-        </div>
-      </div>       
-    </div>
-    <div class="col-lg-6">
-      <div>
-        <div class="panel panel-success">
-          <div class="panel-heading">
-              top 10 most watched movies - in the last month
-          </div>
-          <div class="panel-body">
-            <ul class="media-list">
-              <% @top_10_movies_last_month.each do |movie| %>
-                <%= render 'movie_list_item', movie: movie %>
-              <% end %>
-            </ul>
-            <span class="text-danger"><%= @users_count %> users</span>
-          </div>
-        </div>
-      </div>        
-    </div>
-  </div>
-<% else %>
-  <div class="center jumbotron">
-    <h1>welcome to my movie log</h1>
+<% provide(:title, 'home') %> 
+<div class="poster-grid-container shadow">
+  <div class="introduction">
+    <p class="lead">Welcome to viewlog.me the application to track your viewing habits and see if you get value from your subscriptions</p>
 
-    <h2>
-      This is the home page for the my movie log application.
-    </h2>
-
-    <h3>
-      Where you can log the movies you watch, the subscriptions you pay and keep track to see if you are getting value for money!
-    </h3>
-    
-    <br>
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-    <%= link_to " or log in here.", login_path %>
+    <% if !logged_in? %>
+      <p>
+        Please feel free to browse around or sign in or sign up:<br />
+      </p>
+  
+      <div class="introduction-buttons">
+        <%= link_to login_path, class: "btn btn-primary rounded-pill" do %>
+          <i class="fa fa-lock"></i>
+          sign in
+        <% end %>
+        <%= link_to signup_path, class: "btn btn-trestle rounded-pill" do %>
+          <i class="fa fa-user-plus"></i>
+          sign up
+        <% end %>      
+      </div>
+    <% end %>
   </div>
-<% end %>
+
+  <ul class="poster-grid">
+    <% @posters.each do |poster| %>
+      <%= poster_for_path poster.tmdb_poster_path,"", size: 342  %>
+    <% end %>
+  </ul>
+</div>

@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= full_title(yield(:title))%></title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width">
+
     <%= render 'layouts/rails_default' %>
+
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <div class="container body-content">
+    <div class="page-main">
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>     
       <%= yield %>
-      <%= render 'layouts/footer' %>
-    </div>  
+    </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190113153107) do
+ActiveRecord::Schema.define(version: 20200112121407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,9 @@ ActiveRecord::Schema.define(version: 20190113153107) do
     t.datetime "updated_at", null: false
     t.boolean "released", default: true
     t.date "release_date"
+    t.string "tagline"
+    t.string "overview"
+    t.string "backdrop_path"
     t.index "lower((title)::text) gin_trgm_ops", name: "index_lower_title_on_movies", using: :gin
     t.index ["imdb_id"], name: "index_movies_on_imdb_id", unique: true
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id", unique: true

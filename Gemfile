@@ -21,6 +21,7 @@ gem 'themoviedb-api',         '~> 1.2'
 gem 'chartkick',              '~> 2.2'
 gem 'groupdate',              '~> 3.2'
 gem 'pg',                     '0.18.4'
+gem 'trestle',                '~> 0.9.1'
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri

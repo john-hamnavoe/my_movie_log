@@ -11,6 +11,16 @@ class Movie < ApplicationRecord
   has_many :watches 
   
   self.per_page = 10
+  
+  scope :posters, -> { where.not(tmdb_poster_path: [nil, ""]).select(:tmdb_poster_path) }
+  
+  def tmdb_url
+    "https://www.themoviedb.org/movie/#{tmdb_id}"
+  end
+
+  def imdb_url
+    "https://www.imdb.com/title/#{imdb_id}"
+  end
 
   def self.average_rating(id)
      Watch.where(movie_id: id).where.not(rating: nil).average(:rating).to_f.round(2)

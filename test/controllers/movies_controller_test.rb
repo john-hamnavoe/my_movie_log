@@ -45,7 +45,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1962, movie.year
     assert_equal "tt0056217", movie.imdb_id
     assert_equal @liberty_valance_id, movie.tmdb_id
-    assert_equal "/4efvLpJXzrVMW72blwub9wWYCmc.jpg", movie.tmdb_poster_path
+    assert_equal "/67GlEz1BQQumnscqk56Ex1W7ywH.jpg", movie.tmdb_poster_path
   end
   
   test "should redirect edit if not logged on" do

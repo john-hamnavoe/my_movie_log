@@ -5,6 +5,7 @@ class HomePagesController < ApplicationController
     @top_10_movies = top_10_movies
     @top_10_movies_last_month = top_10_movies_last_month
     @users_count = User.count
+    @posters = (Movie.posters).shuffle.first(200)
   end
 
   def contact

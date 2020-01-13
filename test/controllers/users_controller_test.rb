@@ -3,7 +3,7 @@ require 'test_helper'
 class UserControllerTest < ActionDispatch::IntegrationTest
   
   def setup
-    @base_title = "my movie log" 
+    @base_title = "viewlog.me" 
     @user = users(:michael)
     @other_user = users(:archer)
     @not_active = users(:malory)

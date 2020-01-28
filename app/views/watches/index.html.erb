@@ -1,6 +1,6 @@
 <% provide(:title, 'movies watched') %>
 <div class="container">
-  <div class="media-list my-5">
+  <div class="media-list my-3">
 <% last_month = 0 %>
 <% last_year = 0 %>
 <% group_started = false %>
@@ -21,25 +21,29 @@
   <div class="col-sm-6">
     <li class="list-group-item clearfix">
         <div class="row">
-      	<div class="col-sm-2">
-      	   <%= poster_for_path watch.movie.tmdb_poster_path, watch.movie.title %>
-      	</div>
-        <div class="col-sm-10">
-          <h4 class="h4"><%= link_to watch.movie.title, movie_path(id: watch.movie.id, watched: true) %></h4>
-            
-
-          <p><%= "watched on #{watch.date}" %></br>
-          <%= "likes: " %> <%= link_to "#{watch.watch_likes.length}",  watch_friends_path(watch.id), method: :get, remote: true %></br>
-          <%= "rating: #{watch.rating}" %></p>
-          <hr style="margin-bottom: 0.5em;">
-          <span class="pull-left">
-            <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_watch_path(watch.id)%>
-          </span>
-          <span class="pull-right">
-            <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-trash\"></i></button>".html_safe,
-              watch_path(watch.id), method: :delete, data: { confirm: "You sure?" } %>
-          </span>          
-        </div>   
+        	<div class="col-sm-2">
+        	   <%= poster_for_path watch.movie.tmdb_poster_path, watch.movie.title if watch.movie.present? %>
+        	   <%= poster_for_path watch.tv_show_season.poster_path.presence || watch.tv_show_season.tv_show.poster_path, watch.tv_show_season.tv_show.name if watch.tv_show_season.present? %>
+        	</div>
+          <div class="col-sm-10">
+            <h4 class="h4">
+              <%= link_to watch.movie.title, movie_path(id: watch.movie.id, watched: true) if watch.movie.present? %>
+              <%= link_to "#{watch.tv_show_season.tv_show.name}-#{watch.tv_show_season.name}", tv_show_path(id: watch.tv_show_season.tv_show.id, watched: true) if watch.tv_show_season.present? %>
+            </h4>
+              
+  
+            <p><%= "watched on #{watch.date}" %></br>
+            <%= "likes: " %> <%= link_to "#{watch.watch_likes.length}",  watch_friends_path(watch.id), method: :get, remote: true %></br>
+            <%= "rating: #{watch.rating}" %></p>
+            <hr style="margin-bottom: 0.5em;">
+            <span class="pull-left">
+              <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_watch_path(watch.id)%>
+            </span>
+            <span class="pull-right">
+              <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-trash\"></i></button>".html_safe,
+                watch_path(watch.id), method: :delete, data: { confirm: "You sure?" } %>
+            </span>          
+          </div>   
         </div>
     </li>
   </div>

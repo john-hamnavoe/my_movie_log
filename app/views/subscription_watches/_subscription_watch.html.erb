@@ -1,10 +1,21 @@
 <tr>
-  <td><%= poster_for_path(watch.movie.tmdb_poster_path, watch.movie.title, options = { size:154, class:"poster-table" }) %></td>
+  <td>
+    <%= poster_for_path(watch.movie.tmdb_poster_path, watch.movie.title, options = { size:154, class:"poster-table" }) if watch.movie.present?%>
+    <%= poster_for_path(watch.tv_show_season.poster_path.presence || watch.tv_show_season.tv_show.poster_path, watch.tv_show_season.tv_show.name, options = { size:154, class:"poster-table" }) if watch.tv_show_season.present?%>
+  </td>
   
   
   <td>
     <%= link_to watch.movie do %>
-      <strong><%= watch.movie.title %></strong><br /><small class="text-muted hidden-xs"><%= watch.movie.tagline%></small>
+      <strong>
+        <%= watch.movie.title if watch.movie.present? %>
+        <%= "#{watch.tv_show_season.tv_show.name}-#{watch.tv_show_season.name}" if watch.tv_show_season.present? %>
+      </strong>
+      <br />
+      <small class="text-muted hidden-xs">
+        <%= watch.movie.tagline if watch.movie.present? %>
+        <%= truncate(watch.tv_show_season.tv_show.overview, length: 80) if watch.tv_show_season.present? %>
+      <small>
     <% end %>
   </td>     
   <td><%= watch.rating %></td>

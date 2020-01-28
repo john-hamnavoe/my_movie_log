@@ -59,3 +59,13 @@ six:
   location: one
   subscription: one
   paid: 9.99
+  
+seven:
+  user: michael
+  tv_show_season: one
+  date: <%= Date.today %>
+  rating: 1
+  review: MyText
+  location: one
+  subscription: one
+  paid: 9.99

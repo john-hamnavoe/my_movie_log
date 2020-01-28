@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tv_show: tv_show_one
+  tmdb_id: 1
+  number: 1
+  name: MyString
+  overview: MyString
+  air_date: 2020-01-20
+  episode_count: 1
+  poster_path: MyString
+
+two:
+  tv_show: tv_show_two
+  tmdb_id: 1
+  number: 1
+  name: MyString
+  overview: MyString
+  air_date: 2020-01-20
+  episode_count: 1
+  poster_path: MyString

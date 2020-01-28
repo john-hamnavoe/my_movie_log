@@ -15,11 +15,6 @@ class WatchTest < ActiveSupport::TestCase
     assert_not @watch.valid?
   end
   
-  test "should have movie" do
-    @watch.movie_id = nil
-    assert_not @watch.valid?
-  end
-  
   test "should have date" do
     @watch.date = nil
     assert_not @watch.valid?

@@ -22,9 +22,12 @@ Rails.application.routes.draw do
       patch :release, to: 'movies#release'
     end
   end
+  resources :tv_shows,              except: [:destroy, :create, :new]
   resources :movie_interests,      only: [:create, :destroy]
   post '/create_from_tmdb',       to: 'movies#create_from_tmdb'
+  post '/create_tv_from_tmdb',       to: 'tv_shows#create_from_tmdb'
   resources :tmdb_movies,         only: [:index, :show]
+  resources :tmdb_tv_shows,       only: [:index, :show]  
   resources :subscriptions,       except: [:destroy]  do
     resources :watches, only: [:index], to: 'subscription_watches#index'
   end

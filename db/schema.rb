@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200112121407) do
+ActiveRecord::Schema.define(version: 20200127220735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,35 @@ ActiveRecord::Schema.define(version: 20200112121407) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
+  create_table "tv_show_seasons", force: :cascade do |t|
+    t.bigint "tv_show_id"
+    t.integer "tmdb_id"
+    t.integer "number"
+    t.string "name"
+    t.string "overview"
+    t.date "air_date"
+    t.integer "episode_count"
+    t.string "poster_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tv_show_id"], name: "index_tv_show_seasons_on_tv_show_id"
+  end
+
+  create_table "tv_shows", force: :cascade do |t|
+    t.integer "tmdb_id"
+    t.string "name"
+    t.string "overview"
+    t.string "homepage"
+    t.date "first_air_date"
+    t.date "last_air_date"
+    t.string "poster_path"
+    t.string "backdrop_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tv_shows_on_name"
+    t.index ["tmdb_id"], name: "index_tv_shows_on_tmdb_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -172,10 +201,12 @@ ActiveRecord::Schema.define(version: 20200112121407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "subscription_payment_id"
+    t.bigint "tv_show_season_id"
     t.index ["location_id"], name: "index_watches_on_location_id"
     t.index ["movie_id"], name: "index_watches_on_movie_id"
     t.index ["subscription_id"], name: "index_watches_on_subscription_id"
     t.index ["subscription_payment_id"], name: "index_watches_on_subscription_payment_id"
+    t.index ["tv_show_season_id"], name: "index_watches_on_tv_show_season_id"
     t.index ["user_id"], name: "index_watches_on_user_id"
   end
 
@@ -187,7 +218,9 @@ ActiveRecord::Schema.define(version: 20200112121407) do
   add_foreign_key "movie_favourites", "users"
   add_foreign_key "movie_interests", "movies"
   add_foreign_key "movie_interests", "users"
+  add_foreign_key "tv_show_seasons", "tv_shows"
   add_foreign_key "watch_likes", "users", column: "friend_id"
   add_foreign_key "watch_likes", "watches"
   add_foreign_key "watches", "subscription_payments"
+  add_foreign_key "watches", "tv_show_seasons"
 end

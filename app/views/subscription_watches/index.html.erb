@@ -1,9 +1,11 @@
 <% provide(:title, 'subscription watches') %>
 
-<%= link_to "back to subscription", subscription_path(@subscription_id) %>
 <div class="container">
-  <div class="media-list my-5">
-    <h4><small>watches</small></h4>
+  <ol class="breadcrumb">  
+    <li class="breadcrumb-item"><%= link_to "Subscription", subscription_path(@subscription_id) %></li>
+    <li class="breadcrumb-item active" aria-current="page">Watches</li>
+  </ol>  
+  <div class="media-list my-1">
     <div class="row">
       <div class="col-md-9">
       <table class= table>

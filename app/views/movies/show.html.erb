@@ -1,12 +1,16 @@
 <% provide(:title, 'movie') %>
 
-<% if @watched_redirect %>
-  <%= link_to "back to watches", watches_path %>
-<% else %>
-  <%= link_to "back to movies", movies_path %>
-<% end %>
-
 <div class="media-banner">
+  <div class="container">
+   <ol class="breadcrumb">  
+      <% if @watched_redirect %>
+        <li class="breadcrumb-item"><%= link_to "Watches", watches_path %></li>
+      <% else %>
+        <li class="breadcrumb-item"><%= link_to "Movies", movies_path %></li>
+      <% end %>
+      <li class="breadcrumb-item active" aria-current="page">Movie</li>
+    </ol>
+  </div>  
   <figure class="backdrop">
     <%= background_for_path(@movie.backdrop_path, @movie.title) %>
   </figure>

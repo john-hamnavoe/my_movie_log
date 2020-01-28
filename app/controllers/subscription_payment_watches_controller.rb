@@ -3,7 +3,7 @@ class SubscriptionPaymentWatchesController < ApplicationController
 
   def index
     @subscription_payment = SubscriptionPayment.find_by(id: params[:subscription_payment_id])
-    @subscription_payment_watches = Watch.joins(:movie).where(
+    @subscription_payment_watches = Watch.details.where(
       subscription_payment_id: @subscription_payment.id).order(:date)
   end
 end

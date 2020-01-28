@@ -1,0 +1,22 @@
+<ul class="list-group list-group-flush my-4">
+  <% seasons.each do |season| %>
+    <li class="list-group-item">
+      <div class="media">
+        <figure class="season-image mr-4">
+          <%= poster_for_path season.poster_path, season.name, size: 500, class: "poster"  if season.poster_path? %>
+        </figure>
+        <div class="media-body">
+    
+          <h6 class="mt-2"><%= season.name %> (<%= pluralize(season.episode_count, "episode") %>)
+          <% if logged_in? %>
+            <%= link_to new_watch_path(tv_show_season_id: season.id), class: "rounded-pill ml-auto media-rating-small" do %>
+              <i class="fa fa-eye"></i>
+            <% end %>
+          <% end %> </h6>
+          <p class="small text-muted mb-0"><%= season.overview %></p>
+ 
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

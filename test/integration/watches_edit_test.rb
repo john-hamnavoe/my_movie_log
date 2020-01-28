@@ -41,8 +41,8 @@ class WatchesEditTest < ActionDispatch::IntegrationTest
     assert flash.empty?
     @watch.reload
     assert_not_equal rating, @watch.rating
-    movie = assigns(:movie)
-    assert_equal @watch.movie_id, movie.id
+    movie = assigns(:title)
+    assert_equal @watch.movie.title, movie
     subscriptions = assigns(:subscriptions)
     assert_not subscriptions.nil?
   end    

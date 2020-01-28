@@ -1,6 +1,6 @@
 <% provide(:title, 'select movie') %>
 <div class="container">
-  <div class="media-list my-5">
+  <div class="media-list my-2">
   <%= form_for :tmdb_movies, method: :get do |f| %>
     <div class="input-group input-group-lg">
       <%= label_tag :keywords, nil, class: "sr-only" %>
@@ -14,7 +14,7 @@
   <% end %>
 </div>
 
-<div class="media-list my-5">
+<div class="media-list my-2">
   <hr>
     <% @tmdb_movies.each do |movie| %>
       <div class="card media-card my-3">

@@ -262,6 +262,19 @@ img {
   border-radius: 50%;
 }
 
+.media-rating-small {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.64rem;
+  text-align: center;
+  line-height: 1.5rem;
+  background: theme-color("primary");
+  color: white;
+  border-radius: 50%;
+}
+
+
 .small_icon_button {
   background: theme-color("primary");
   color: white;
@@ -412,3 +425,10 @@ ul#horizontal-list {
     height: 1%; }
   *:first-child + html .digg_pagination {
     overflow: hidden; }
+    
+    
+    
+.breadcrumb {
+  background: rgba(245, 245, 245, 0); 
+  padding: 0px;
+}

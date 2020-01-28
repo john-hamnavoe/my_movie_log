@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+tv_show_one:
+  name: My tv_show 1
+  tmdb_id: 3
+  poster_path: poster1.jpg
+
+tv_show_two:
+  name: My tv_show 2
+  tmdb_id: 2
+  poster_path: poster2.jpg
+  
+tv_show_three:
+  name: My tv_show 3
+
+tv_show_four:
+  name: My tv_show 4
+

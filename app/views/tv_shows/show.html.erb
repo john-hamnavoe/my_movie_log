@@ -1,0 +1,60 @@
+<% provide(:title, 'tv show') %>
+<div class="media-banner">
+  <div class="container">
+   <ol class="breadcrumb">  
+      <% if @watched_redirect %>
+        <li class="breadcrumb-item"><%= link_to "Watches", watches_path %></li>
+      <% else %>
+        <li class="breadcrumb-item"><%= link_to "TV Shows", tv_shows_path %></li>
+      <% end %>
+      <li class="breadcrumb-item active" aria-current="page">TV Show</li>
+    </ol>
+  </div>  
+  <figure class="backdrop">
+    <%= background_for_path(@tv_show.backdrop_path, @tv_show.name) %>
+  </figure>
+
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-md-3">
+        <%= poster_for_path @tv_show.poster_path, @tv_show.name, size: 500, class: "poster"  %>
+      </div>
+
+      <div class="col-md-9">
+        <div class="media-info">
+
+          <h1 class="mb-4"><%= @tv_show.name %></h1>
+
+          <h5>Overview</h5>
+          <p><%= @tv_show.overview %></p>
+
+          <%= link_to "TMDb", @tv_show.tmdb_url, target: "_blank", class: "btn btn-info rounded-pill" if @tv_show.tmdb_id? %>
+          <%= link_to "Refresh", create_tv_from_tmdb_path(tmdb_id: @tv_show.tmdb_id, redirect_show: true), method: :post, class: "btn btn-success rounded-pill" if @tv_show.tmdb_id? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><%= link_to "Seasons (#{@seasons.count})", "#seasons", class: "nav-link active", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Reviews", "#review", class: "nav-link", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Watches ", "#watches", class: "nav-link", data: { toggle: "tab" } %></li>
+  </ul>
+    
+  <div class="tab-content">
+    
+    <div class="tab-pane fade show active" role="tabpanel" id="seasons">
+      <%= render "seasons", seasons: @seasons %>
+    </div>
+  
+    <div class="tab-pane fade" role="tabpanel" id="review">
+      <p>to do</p>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="watches">
+      <p>watches to do</p>
+    </div>
+  </div>
+</div>

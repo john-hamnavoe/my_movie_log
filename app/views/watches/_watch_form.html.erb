@@ -1,7 +1,8 @@
-<h4><%= "recording the watching of #{@movie.title}" %></h4>
+<h4><%= "recording the watching of #{@title}" %></h4>
 <%= form_for(@watch) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :movie_id %>
+  <%= f.hidden_field :tv_show_season_id %>
           <%= f.label :date %>
       <div class="input-group">
         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>

@@ -1,0 +1,36 @@
+<% provide(:title, 'select tv show') %>
+<div class="container">
+  <div class="media-list my-2">
+  <%= form_for :tmdb_tv_shows, method: :get do |f| %>
+    <div class="input-group input-group-lg">
+      <%= label_tag :keywords, nil, class: "sr-only" %>
+      <%= text_field_tag :keywords, @keywords, 
+            placeholder: "TV Show Title", 
+            class: "form-control input-lg" %>
+      <span class="input-group-btn">
+        <%= submit_tag "find TV show", class: "btn btn-primary btn-lg" %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<div class="media-list my-2">
+  <hr>
+    <% @tmdb_tv_shows.each do |tv_show| %>
+      <div class="card media-card my-3">
+        <div class="media-poster"><%= poster_for_movie tv_show, size:500, class: "card-img rounded-0"  %></div>
+        <div class="card-body">
+          <h4 class="card-title title"><%= tv_show['name'] %></h4>
+          <h6 class="card-subtitle mb-2"><%= tv_show['overview'] %></h6>
+          <%= link_to "<button type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-plus-square\"></i> add this tv show</button>".html_safe,
+            create_tv_from_tmdb_path(tmdb_id: tv_show["id"]), method: :post %>
+        </div>
+
+      </div>  
+     <% end %>      
+</div>
+  
+<div class="digg_pagination">
+  <%= will_paginate @tmdb_tv_shows %>
+</div>
+</div>

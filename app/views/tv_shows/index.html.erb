@@ -1,0 +1,47 @@
+<% provide(:title, 'tv shows') %>
+<div class="container">
+
+  <div class="media-list my-3">
+    <div class="row">
+      <div class="col-sm-9">
+        <%= form_for :tv_shows, method: :get do |f| %>
+          <div class="input-group input-group-lg">
+            <%= label_tag :keywords, nil, class: "sr-only" %>
+            <%= text_field_tag :keywords, @keywords, 
+                  placeholder: "TV Show Name", 
+                  class: "form-control input-lg" %>
+            <span class="input-group-btn">
+              <%= submit_tag "find tv shows", class: "btn btn-primary btn-lg" %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-3">
+        <% if logged_in? %>
+          <br>
+          <%= link_to "add new tv show", tmdb_tv_shows_path(keywords: @keywords) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="media-list my-1">
+    <hr>
+      <% @tv_shows.each do |tv_show| %>
+        <div class="card media-card my-3">
+          <div class="media-poster"><%= poster_for_path tv_show.poster_path, tv_show.name, size: 500, class: "card-img rounded-0"  %></div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to tv_show.name, tv_show %></h5>
+            <p class="card-text"><%= truncate(tv_show.overview, length: 200) %></p>
+
+          </div>
+  
+        </div>  
+       <% end %>      
+  </div>
+  
+  <div class="digg_pagination">
+  <%= will_paginate @tv_shows %>
+  </div>
+</div>
+</div>

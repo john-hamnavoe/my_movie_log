@@ -1,11 +1,10 @@
 <% provide(:title, 'upcoming movies') %>
-
-<div class="row">
-  <hr>
-  <ol class="list-group">
+<div class="container">
+  <div class="media-list my-1">
+    <hr>
     <%= render 'upcoming_movie', movies: @upcoming_movies %>
-  </ol>
-</div>
-<div class="digg_pagination">
-<%= will_paginate @movies %>
+  </div>
+  <div class="digg_pagination">
+    <%= will_paginate @movies %>
+  </div>
 </div>

@@ -15,6 +15,10 @@ class MovieImporter
     movie.backdrop_path = tmdb['backdrop_path']
     
     movie.year = tmdb['release_date'].to_date.year
+    
+    movie.release_date = tmdb['release_date'].to_date
+    
+    movie.released = tmdb['release_date'].to_date <= Date.today
 
     movie.save!
 

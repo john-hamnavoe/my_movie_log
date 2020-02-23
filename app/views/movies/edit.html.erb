@@ -1,9 +1,13 @@
 <% provide(:title, 'edit movie') %>
+<div class="container">
+<h4><%= "edit #{@movie.title}" %></h4>
 <div class="row">
   <div class="col-md-3">
     <%= poster_for_path @movie.tmdb_poster_path, @movie.title, size: 200 %>
   </div>
-  <div class="col-md-6">
+
+  <div class="col-md-8">
       <%= render 'movie_form' %>
   </div>
+</div>
 </div>

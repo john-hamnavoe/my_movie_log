@@ -12,6 +12,7 @@
           <% if logged_in? %>
           <li class="nav-item"><%= link_to "Subscriptions", subscriptions_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Watched", watches_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Upcoming", upcoming_movies_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Charts", user_path(current_user.id), class: "nav-link" %></li>
           <% end %>
         </ul>

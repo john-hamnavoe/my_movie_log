@@ -38,7 +38,16 @@
             <h5 class="card-title"><%= link_to movie.title, movie %></h5>
             <h6 class="card-subtitle mb-2"><%= movie.tagline %></h6>
             <p class="card-text"><%= truncate(movie.overview, length: 200) %></p>
-
+            <% if logged_in? %>
+              <hr style="margin-bottom: 0.5em;">
+              <div class="container">
+                <div class="row my-1">
+                  <div  class="col-sm-1">
+                    <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_movie_path(movie.id) %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
   
         </div>  

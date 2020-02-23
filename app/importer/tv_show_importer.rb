@@ -18,7 +18,8 @@ class TvShowImporter
     tv_show.save!
 
     tmdb['seasons'].each do |s|
-      tv_show_season = TvShowSeason.where(tmdb_id: tmdb_id).first_or_initialize
+      tv_show_season = TvShowSeason.where(tmdb_id: s['table']['id']).first_or_initialize
+      #tv_show_season = TvShowSeason.where(tmdb_id: tmdb_id).first_or_initialize
       tv_show_season.tv_show_id = tv_show.id
       tv_show_season.tmdb_id = s['table']['id']
       tv_show_season.number = s['table']['season_number']
@@ -34,12 +35,3 @@ class TvShowImporter
     tv_show
   end
 end
-
-
-
-
-
-
-
-
-

@@ -22,7 +22,7 @@
 
       <div class="col-md-9">
         <div class="media-info">
-
+          <h2 class="media-rating"><%= @average_rating  %></h2>
           <h1 class="mb-4"><%= @tv_show.name %></h1>
 
           <h5>Overview</h5>
@@ -50,11 +50,32 @@
     </div>
   
     <div class="tab-pane fade" role="tabpanel" id="review">
-      <p>to do</p>
+      <% @last_reviews.each do |review| %>
+        <div class="card media-card my-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= review.date %></h5>
+            <h6 class="card-subtitle mb-2">Rating: <%= review.rating %></h6>
+            <p class="card-text"><%= review.review %></p>
+          </div>
+        </div>  
+       <% end %> 
     </div>
 
     <div class="tab-pane fade" role="tabpanel" id="watches">
-      <p>watches to do</p>
+      <div class="card media-card my-3">
+        <div class="card-body">
+          <% if @user_watches %>
+            <% @user_watches.each do |u| %>
+              <%= link_to edit_watch_path(id: u.id) do %>
+                Watched <%= u.tv_show_season.name %> on <%= u.date %>
+              <% end %>
+              </br>
+            <% end %>
+          <% else %>
+            <p>Login to see when you watched this tv show.</p>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

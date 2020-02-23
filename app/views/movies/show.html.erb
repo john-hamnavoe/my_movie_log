@@ -32,6 +32,10 @@
 
           <%= link_to "IMDb", @movie.imdb_url, target: "_blank", class: "btn btn-light rounded-pill" if @movie.imdb_id? %>
           <%= link_to "TMDb", @movie.tmdb_url, target: "_blank", class: "btn btn-info rounded-pill" if @movie.tmdb_id? %>
+          <%= link_to new_watch_path(movie_id: @movie.id), class: "btn btn-danger rounded-pill" do %>
+            <i class="fa fa-eye"></i>
+            Watch
+          <% end %>
         </div>
       </div>
     </div>
@@ -58,7 +62,20 @@
     </div>
 
     <div class="tab-pane fade" role="tabpanel" id="watches">
-      <p>watches to do</p>
+      <div class="card media-card my-3">
+        <div class="card-body">
+          <% if @user_watches %>
+            <% @user_watches.each do |u| %>
+              <%= link_to edit_watch_path(id: u.id) do %>
+                Watched on <%= u.date %>
+              <% end %>
+              </br>
+            <% end %>
+          <% else %>
+            <p>Login to see when you watched this movie.</p>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

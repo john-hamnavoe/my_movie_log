@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
     @average_rating = Movie.average_rating(id)
     @total_watches = Movie.total_watches(id)
     @last_reviews = Movie.last_reviews(id, 3)
+    @user_watches = Watch.details.where(user_id: current_user.id, movie_id: id) if logged_in?
     @watched_redirect = params[:watched].present?
   end
 

@@ -27,7 +27,7 @@ class WatchesController < ApplicationController
     if @watch.save
       update_subscription_payments
       flash[:success] = 'movie watch added'
-      redirect_to movies_path
+      redirect_to_item
     else
       find_title_and_subscriptions(@watch.movie_id, @watch.tv_show_season_id)
       render 'new'
@@ -46,7 +46,7 @@ class WatchesController < ApplicationController
     if @watch.update_attributes(watch_params)
       update_subscription_payments
       flash[:success] = 'watch updated'
-      redirect_to watches_path
+      redirect_to_item
     else
       find_title_and_subscriptions(@watch.movie_id, @watch.tv_show_season_id)
       render 'edit'
@@ -85,5 +85,10 @@ class WatchesController < ApplicationController
 
   def update_subscription_payments
     SubscriptionPaymentAllocationService.new(watch_id: @watch.id).perform
+  end
+
+  def redirect_to_item
+    redirect_to movie_path(@watch.movie_id) if @watch.movie_id
+    redirect_to tv_show_path(TvShowSeason.find_by(id: @watch.tv_show_season_id).tv_show_id) if @watch.tv_show_season_id
   end
 end

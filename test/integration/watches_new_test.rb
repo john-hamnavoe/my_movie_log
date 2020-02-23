@@ -18,7 +18,7 @@ class WatchesNewTest < ActionDispatch::IntegrationTest
     assert_difference 'Watch.count', +1 do
       post watches_path, params: { watch: { movie_id: @watch.movie_id, date: @watch.date } }
     end
-    assert_redirected_to movies_path
+    assert_redirected_to movie_path(@watch.movie_id)
     watch = Watch.find_by(date: @watch.date)
     assert_equal watch.user_id, @user_michael.id
     assert_not flash.empty?

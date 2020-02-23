@@ -24,7 +24,7 @@ class WatchesEditTest < ActionDispatch::IntegrationTest
         date: @watch.date, paid: paid} }
     end
     assert_not flash.empty?
-    assert_redirected_to watches_path
+    assert_redirected_to movie_path(@watch.movie_id)
     @watch.reload
     assert_equal rating, @watch.rating
     assert_equal paid, @watch.paid

@@ -14,9 +14,10 @@ class TvShowsController < ApplicationController
     id = params[:id]
     @tv_show = TvShow.find_by(id: id)
     @seasons = @tv_show.tv_show_seasons.order(:number)
-   # @average_rating = TvShow.average_rating(id)
-   # @total_watches = TvShow.total_watches(id)
-   # @last_reviews = TvShow.last_reviews(id, 3)
+    @user_watches = Watch.joins(:tv_show_season).where(user_id: current_user.id, tv_show_seasons: {tv_show_id: id }) if logged_in?
+    @average_rating = TvShow.average_rating(id)
+    @total_watches = TvShow.total_watches(id)
+    @last_reviews = TvShow.last_reviews(id, 3)
     @watched_redirect = params[:watched].present?
   end
 

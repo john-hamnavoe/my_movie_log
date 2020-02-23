@@ -3,13 +3,13 @@
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :movie_id %>
   <%= f.hidden_field :tv_show_season_id %>
-          <%= f.label :date %>
-      <div class="input-group">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
-        <%= f.date_field :date, autofocus: true %>
-      </div>
-      <%= f.label :rating %>
-      <%= f.number_field :rating, in: 0..5, step: 1, class: 'form-control' %>
+  <%= f.label :date %>
+  <div class="input-group">
+    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+    <%= f.date_field :date, autofocus: true %>
+  </div>
+  <%= f.label :rating %>
+  <%= f.number_field :rating, in: 0..5, step: 1, class: 'form-control' %>
 
   <%= f.label :paid %>
   <%= f.number_field :paid, in: 0.0..10000.0, step: 0.01, class: 'form-control' %>
@@ -29,6 +29,7 @@
   
    <div class="input-group">
      <%= f.submit "save", class: "btn btn-primary" %>
-     <%= link_to "cancel", watches_path, method: :get, class: "btn btn-default form-control" %>
+     <%= link_to "cancel", movie_path(@watch.movie_id), method: :get, class: "btn btn-default form-control" if @watch.movie_id %>
+     <%= link_to "cancel", tv_show_path(TvShowSeason.find_by(id: @watch.tv_show_season_id).tv_show_id), method: :get, class: "btn btn-default form-control" if @watch.tv_show_season_id %>
   </div>     
 <% end %>

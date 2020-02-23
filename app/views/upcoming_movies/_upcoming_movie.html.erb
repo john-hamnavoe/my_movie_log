@@ -10,10 +10,10 @@
         <hr style="margin-bottom: 0.5em;">
         <div class="container">
           <div class="row my-1">
-            <div  class="col-sm-1">
+            <div  class="col-xs-1">
               <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-pencil-square-o\"></i></button>".html_safe, edit_movie_path(movie.id, params: {upcoming: true})%>
             </div>
-            <div class="col-sm-1" id="interested_state_<%= movie.id %>">
+            <div class="col-xs-1" id="interested_state_<%= movie.id %>">
           	  <% if movie_interest = @movie_interests.detect { |mi| mi.movie_id == movie.id } %>
       	        <%= render 'interested', movie_interest: movie_interest %>
           	  <% else %>
@@ -21,7 +21,7 @@
           	  <% end %>
   	        </div>
 
-            <div  class="col-sm-1">
+            <div  class="col-xs-1">
               <%= link_to "<button type=\"button\" class=\"rounded-pill small_icon_button\"><i class=\"fa fa-check\"></i></button>".html_safe, release_movie_path(id: movie.id), method: :patch %>
             </div>
           

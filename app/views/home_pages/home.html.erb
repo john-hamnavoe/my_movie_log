@@ -23,7 +23,7 @@
 
   <ul class="poster-grid">
     <% @posters.each do |poster| %>
-      <%= poster_for_path poster.tmdb_poster_path,"", size: 342  %>
+      <li><%= poster_for_path poster.tmdb_poster_path,"", size: 342  %></li>
     <% end %>
   </ul>
 </div>

@@ -9,6 +9,8 @@ class TvShow < ApplicationRecord
 
   self.per_page = 10
   
+  scope :posters, -> { where.not(poster_path: [nil, ""]).select("poster_path AS tmdb_poster_path") }
+  
   def tmdb_url
     "https://www.themoviedb.org/tv/#{tmdb_id}"
   end

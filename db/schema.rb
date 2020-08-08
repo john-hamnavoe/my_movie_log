@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20200127220735) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
-    t.integer "location_type_id"
+    t.bigint "location_type_id"
     t.string "website"
     t.string "post_code"
     t.datetime "created_at", null: false
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20200127220735) do
   end
 
   create_table "subscription_payments", force: :cascade do |t|
-    t.integer "subscription_id"
+    t.bigint "subscription_id"
     t.decimal "amount", precision: 5, scale: 2
     t.date "start_date"
     t.date "end_date"
@@ -118,12 +118,12 @@ ActiveRecord::Schema.define(version: 20200127220735) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.date "start_date"
     t.decimal "amount", precision: 5, scale: 2
-    t.integer "subscription_period_id"
+    t.bigint "subscription_period_id"
     t.date "end_date"
-    t.integer "payment_type_id"
+    t.bigint "payment_type_id"
     t.string "reference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -190,13 +190,13 @@ ActiveRecord::Schema.define(version: 20200127220735) do
   end
 
   create_table "watches", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "movie_id"
+    t.bigint "user_id"
+    t.bigint "movie_id"
     t.date "date"
     t.integer "rating"
     t.text "review"
-    t.integer "location_id"
-    t.integer "subscription_id"
+    t.bigint "location_id"
+    t.bigint "subscription_id"
     t.decimal "paid", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -214,13 +214,22 @@ ActiveRecord::Schema.define(version: 20200127220735) do
   add_foreign_key "friend_requests", "users", column: "friend_id"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "locations", "location_types"
   add_foreign_key "movie_favourites", "movies"
   add_foreign_key "movie_favourites", "users"
   add_foreign_key "movie_interests", "movies"
   add_foreign_key "movie_interests", "users"
+  add_foreign_key "subscription_payments", "subscriptions"
+  add_foreign_key "subscriptions", "payment_types"
+  add_foreign_key "subscriptions", "subscription_periods"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "tv_show_seasons", "tv_shows"
   add_foreign_key "watch_likes", "users", column: "friend_id"
   add_foreign_key "watch_likes", "watches"
+  add_foreign_key "watches", "locations"
+  add_foreign_key "watches", "movies"
   add_foreign_key "watches", "subscription_payments"
+  add_foreign_key "watches", "subscriptions"
   add_foreign_key "watches", "tv_show_seasons"
+  add_foreign_key "watches", "users"
 end

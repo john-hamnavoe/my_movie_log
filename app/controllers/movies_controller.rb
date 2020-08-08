@@ -30,8 +30,13 @@ class MoviesController < ApplicationController
   def create_from_tmdb
     if params[:tmdb_id].present?
       @movie = MovieImporter.import(params[:tmdb_id])
-      flash[:success] = 'movie added'
-      redirect_to movies_path
+      if params[:redirect_show] == 'true'
+        flash[:success] = 'movie refreshed'
+        redirect_to @movie
+      else
+        flash[:success] = 'movie added'
+        redirect_to movies_path
+      end
     else
       redirect_to movies_path
     end

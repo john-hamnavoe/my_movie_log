@@ -18,4 +18,4 @@
 
 * Deployment instructions
 
-* ...
+* ...Stack Update

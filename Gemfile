@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.7.0"
 
 gem 'rails',                  '~> 5.1.0'
-gem 'bcrypt',                 '3.1.11'
+gem 'bcrypt',                 '3.1.16'
 gem 'will_paginate',          '3.1.5'
 gem 'carrierwave',            '1.1.0'
 gem 'mini_magick',            '4.7.0'

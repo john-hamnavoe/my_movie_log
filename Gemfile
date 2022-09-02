@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.6.0"
+ruby "2.7.0"
 
 gem 'rails',                  '~> 5.1.0'
 gem 'bcrypt',                 '3.1.11'
@@ -18,7 +18,7 @@ gem 'turbolinks',             '5.0.1'
 gem 'jbuilder',               '2.7.0'
 gem 'rails-i18n',             '5.0.4' 
 gem 'font-awesome-rails',     '4.7.0.2'
-gem 'themoviedb-api',         '~> 1.2'
+gem 'themoviedb-api',         git: 'https://github.com/ClassHook/themoviedb-api.git'
 gem 'chartkick',              '~> 2.2'
 gem 'groupdate',              '~> 3.2'
 gem 'pg',                     '0.18.4'

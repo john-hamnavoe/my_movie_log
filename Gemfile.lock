@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ClassHook/themoviedb-api.git
+  revision: b0c0301f4a10a26feca344af669b56873bdd0109
+  specs:
+    themoviedb-api (1.3.1)
+      rest-client (~> 2.0, >= 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,7 +85,7 @@ GEM
     dotenv-rails (2.2.2)
       dotenv (= 2.2.2)
       railties (>= 3.2, < 6.0)
-    dry-inflector (0.2.1)
+    dry-inflector (0.3.0)
     erubi (1.11.0)
     excon (0.92.4)
     execjs (2.8.1)
@@ -386,8 +393,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    themoviedb-api (1.3.0)
-      rest-client (~> 2.0, >= 2.0)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.11)
@@ -451,7 +456,7 @@ DEPENDENCIES
   sass-rails (= 5.0.6)
   spring (= 2.0.2)
   spring-watcher-listen (= 2.0.1)
-  themoviedb-api (~> 1.2)
+  themoviedb-api!
   trestle (~> 0.9.1)
   turbolinks (= 5.0.1)
   tzinfo-data
@@ -460,7 +465,7 @@ DEPENDENCIES
   will_paginate (= 3.1.5)
 
 RUBY VERSION
-   ruby 2.6.0p0
+   ruby 2.7.0p0
 
 BUNDLED WITH
    1.17.2
